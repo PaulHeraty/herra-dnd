@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="EnemyCore" load_steps=9 format=3 uid="uid://c7vpiqsnx0sus"]
+
+[ext_resource type="Script" uid="uid://buqbd3v8wiknc" path="res://items/Armor.gd" id="1_thjen"]
+[ext_resource type="Script" uid="uid://dwl0xsytv4d4v" path="res://items/Weapon.gd" id="2_l4cod"]
+[ext_resource type="Script" uid="uid://38cib653j0id" path="res://enemy/EnemyCore.gd" id="3_thjen"]
+[ext_resource type="Resource" uid="uid://t48e0fsrqppo" path="res://items/weapons/Shortsword.tres" id="3_vfwl0"]
+[ext_resource type="Script" uid="uid://4x8rc21bxsoy" path="res://enemy/HitDice.gd" id="4_v0vyj"]
+[ext_resource type="Script" uid="uid://ccxeegh34n548" path="res://characters/Stats.gd" id="6_vtts7"]
+
+[sub_resource type="Resource" id="Resource_oas0w"]
+script = ExtResource("4_v0vyj")
+dice_count = 2
+dice_sides = 8
+plus_amount = 4
+metadata/_custom_type_script = "uid://4x8rc21bxsoy"
+
+[sub_resource type="Resource" id="Resource_pa1lv"]
+script = ExtResource("6_vtts7")
+strength = 10
+dexterity = 14
+constitution = 15
+intelligence = 6
+wisdom = 8
+charisma = 5
+metadata/_custom_type_script = "uid://ccxeegh34n548"
+
+[resource]
+script = ExtResource("3_thjen")
+name = "Skeleton"
+ac = 13
+hit_dice = SubResource("Resource_oas0w")
+xp = 50
+alignment = 6
+stats = SubResource("Resource_pa1lv")
+damage_vulnerabilities = Array[String](["Bludgeoning"])
+damage_immunities = Array[String](["Poison"])
+condition_vulnerabilities = Array[String](["Poisoned"])
+senses = Array[String](["Darkvision 60ft"])
+equipped_weapons = Array[ExtResource("2_l4cod")]([ExtResource("3_vfwl0")])
+metadata/_custom_type_script = "uid://38cib653j0id"

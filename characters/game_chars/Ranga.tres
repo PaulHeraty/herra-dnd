@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Character" load_steps=8 format=3 uid="uid://jupl0avccyx0"]
+
+[ext_resource type="Script" uid="uid://c4sk7eniu4rge" path="res://characters/Character.gd" id="1_46o5h"]
+[ext_resource type="Script" uid="uid://buqbd3v8wiknc" path="res://items/Armor.gd" id="1_iopy7"]
+[ext_resource type="Resource" uid="uid://wi3hdumynhp0" path="res://items/weapons/Longbow.tres" id="1_s50px"]
+[ext_resource type="Script" uid="uid://ccxeegh34n548" path="res://characters/Stats.gd" id="2_auba6"]
+[ext_resource type="Resource" uid="uid://3kraw7u1dnem" path="res://items/armors/Leather.tres" id="2_ebhid"]
+[ext_resource type="Script" uid="uid://dwl0xsytv4d4v" path="res://items/Weapon.gd" id="3_tny3m"]
+
+[sub_resource type="Resource" id="Resource_s50px"]
+script = ExtResource("2_auba6")
+strength = 14
+dexterity = 16
+constitution = 15
+intelligence = 11
+wisdom = 13
+charisma = 9
+metadata/_custom_type_script = "uid://ccxeegh34n548"
+
+[resource]
+script = ExtResource("1_46o5h")
+name = "Ranga"
+background = 3
+alignment = 0
+max_hp = 12
+stats = SubResource("Resource_s50px")
+proficiencies = Array[int]([5, 11])
+equipped_weapons = Array[ExtResource("3_tny3m")]([ExtResource("1_s50px")])
+equipped_armor = Array[ExtResource("1_iopy7")]([ExtResource("2_ebhid")])
+metadata/_custom_type_script = "uid://c4sk7eniu4rge"

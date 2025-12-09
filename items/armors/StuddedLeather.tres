@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=2 format=3 uid="uid://y42iwmayn7kj"]
+
+[ext_resource type="Script" uid="uid://buqbd3v8wiknc" path="res://items/Armor.gd" id="1_ctfxk"]
+
+[resource]
+script = ExtResource("1_ctfxk")
+name = "Studded Leather"
+cost = 45
+ac = 12
+weight = 13
+metadata/_custom_type_script = "uid://buqbd3v8wiknc"

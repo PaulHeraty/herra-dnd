@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=2 format=3 uid="uid://bmop47vpswfmi"]
+
+[ext_resource type="Script" uid="uid://buqbd3v8wiknc" path="res://items/Armor.gd" id="1_7vmpn"]
+
+[resource]
+script = ExtResource("1_7vmpn")
+name = "Splint"
+armor_type = 2
+cost = 200
+ac = 17
+weight = 60
+metadata/_custom_type_script = "uid://buqbd3v8wiknc"

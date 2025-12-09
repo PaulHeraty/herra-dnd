@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://c888yvkqo30n3"]
+
+[ext_resource type="Script" uid="uid://iboxtkqjjnqd" path="res://scenes/UI/CharacterSheet/stat_box.gd" id="1_5rpry"]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+script = ExtResource("1_5rpry")
+
+[node name="StatLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.28707156, 1, 0.38410568, 1)
+text = "Strength"
+
+[node name="BonusLabel" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.25490198, 1, 1, 1)
+text = "+3"
+horizontal_alignment = 1
+
+[node name="ValueLabel" type="Label" parent="."]
+layout_mode = 2
+text = "16"
+horizontal_alignment = 1

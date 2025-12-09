@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=2 format=3 uid="uid://ekc8f23hgkky"]
+
+[ext_resource type="Script" uid="uid://buqbd3v8wiknc" path="res://items/Armor.gd" id="1_y4m8k"]
+
+[resource]
+script = ExtResource("1_y4m8k")
+name = "Shield"
+armor_type = 3
+cost = 10
+ac = 2
+weight = 6
+metadata/_custom_type_script = "uid://buqbd3v8wiknc"

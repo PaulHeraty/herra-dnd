@@ -1,0 +1,264 @@
+[gd_scene load_steps=2 format=3 uid="uid://3xsarab7s1ws"]
+
+[ext_resource type="Script" uid="uid://dn6fkn1ng64ar" path="res://scenes/UI/CharacterSheet/skills_box.gd" id="1_t15sy"]
+
+[node name="SkillsBox" type="VBoxContainer"]
+script = ExtResource("1_t15sy")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0.14901961, 1)
+text = "Skills"
+horizontal_alignment = 1
+
+[node name="Acrobatics" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="AcrobaticsValue" type="Label" parent="Acrobatics"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "+5"
+horizontal_alignment = 1
+
+[node name="AcrobaticsLabel" type="Label" parent="Acrobatics"]
+layout_mode = 2
+text = "Acrobatics"
+
+[node name="AnimalHandling" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="AnimalHandlingValue" type="Label" parent="AnimalHandling"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "+5"
+horizontal_alignment = 1
+
+[node name="AnimalHandlingLabel" type="Label" parent="AnimalHandling"]
+layout_mode = 2
+text = "Animal Handling"
+
+[node name="Arcana" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ArcanaValue" type="Label" parent="Arcana"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "+5"
+horizontal_alignment = 1
+
+[node name="ArcanaLabel" type="Label" parent="Arcana"]
+layout_mode = 2
+text = "Arcana"
+
+[node name="Athletics" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="AthleticsValue" type="Label" parent="Athletics"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "+5"
+horizontal_alignment = 1
+
+[node name="AthleticsLabel" type="Label" parent="Athletics"]
+layout_mode = 2
+text = "Athletics"
+
+[node name="Deception" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="DeceptionValue" type="Label" parent="Deception"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "+5"
+horizontal_alignment = 1
+
+[node name="DeceptionLabel" type="Label" parent="Deception"]
+layout_mode = 2
+text = "Deception"
+
+[node name="History" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="HistoryValue" type="Label" parent="History"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "+5"
+horizontal_alignment = 1
+
+[node name="HistoryLabel" type="Label" parent="History"]
+layout_mode = 2
+text = "History"
+
+[node name="Insight" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="InsightValue" type="Label" parent="Insight"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "+5"
+horizontal_alignment = 1
+
+[node name="InsightLabel" type="Label" parent="Insight"]
+layout_mode = 2
+text = "Insight"
+
+[node name="Intimidation" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="IntimidationValue" type="Label" parent="Intimidation"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "+5"
+horizontal_alignment = 1
+
+[node name="IntimidationLabel" type="Label" parent="Intimidation"]
+layout_mode = 2
+text = "Intimidation"
+
+[node name="Investigation" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="InvestigationValue" type="Label" parent="Investigation"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "+5"
+horizontal_alignment = 1
+
+[node name="InvestigationLabel" type="Label" parent="Investigation"]
+layout_mode = 2
+text = "Investigation"
+
+[node name="Medicine" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="MedicineValue" type="Label" parent="Medicine"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "+5"
+horizontal_alignment = 1
+
+[node name="MedicineLabel" type="Label" parent="Medicine"]
+layout_mode = 2
+text = "Medicine"
+
+[node name="Nature" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="NatureValue" type="Label" parent="Nature"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "+5"
+horizontal_alignment = 1
+
+[node name="NatureLabel" type="Label" parent="Nature"]
+layout_mode = 2
+text = "Nature"
+
+[node name="Perception" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="PerceptionValue" type="Label" parent="Perception"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "+5"
+horizontal_alignment = 1
+
+[node name="PerceptionLabel" type="Label" parent="Perception"]
+layout_mode = 2
+text = "Perception"
+
+[node name="Performance" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="PerformanceValue" type="Label" parent="Performance"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "+5"
+horizontal_alignment = 1
+
+[node name="PerformanceLabel" type="Label" parent="Performance"]
+layout_mode = 2
+text = "Performance"
+
+[node name="Persuasion" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="PersuasionValue" type="Label" parent="Persuasion"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "+5"
+horizontal_alignment = 1
+
+[node name="PersuasionLabel" type="Label" parent="Persuasion"]
+layout_mode = 2
+text = "Persuasion"
+
+[node name="Religion" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="ReligionValue" type="Label" parent="Religion"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "+5"
+horizontal_alignment = 1
+
+[node name="ReligionLabel" type="Label" parent="Religion"]
+layout_mode = 2
+text = "Religion"
+
+[node name="SleightOfHand" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="SleightOfHandValue" type="Label" parent="SleightOfHand"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "+5"
+horizontal_alignment = 1
+
+[node name="SleightOfHandLabel" type="Label" parent="SleightOfHand"]
+layout_mode = 2
+text = "Sleight of Hand"
+
+[node name="Stealth" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="StealthValue" type="Label" parent="Stealth"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "+5"
+horizontal_alignment = 1
+
+[node name="StealthLabel" type="Label" parent="Stealth"]
+layout_mode = 2
+text = "Stealth"
+
+[node name="Survival" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="SurvivalValue" type="Label" parent="Survival"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "+5"
+horizontal_alignment = 1
+
+[node name="SurvivalLabel" type="Label" parent="Survival"]
+layout_mode = 2
+text = "Sleight of Hand"

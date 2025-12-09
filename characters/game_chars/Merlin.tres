@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Character" load_steps=7 format=3 uid="uid://l2uroeeu2mvd"]
+
+[ext_resource type="Script" uid="uid://buqbd3v8wiknc" path="res://items/Armor.gd" id="1_5lnxu"]
+[ext_resource type="Script" uid="uid://c4sk7eniu4rge" path="res://characters/Character.gd" id="1_dvskx"]
+[ext_resource type="Resource" uid="uid://t48e0fsrqppo" path="res://items/weapons/Shortsword.tres" id="1_pbmt5"]
+[ext_resource type="Script" uid="uid://ccxeegh34n548" path="res://characters/Stats.gd" id="2_nak23"]
+[ext_resource type="Script" uid="uid://dwl0xsytv4d4v" path="res://items/Weapon.gd" id="2_rwybk"]
+
+[sub_resource type="Resource" id="Resource_pbmt5"]
+script = ExtResource("2_nak23")
+strength = 10
+dexterity = 15
+constitution = 14
+intelligence = 16
+wisdom = 12
+charisma = 8
+metadata/_custom_type_script = "uid://ccxeegh34n548"
+
+[resource]
+script = ExtResource("1_dvskx")
+name = "Merlin"
+class_type = 2
+race = 3
+background = 4
+alignment = 2
+max_hp = 8
+stats = SubResource("Resource_pbmt5")
+proficiencies = Array[int]([2, 8])
+equipped_weapons = Array[ExtResource("2_rwybk")]([ExtResource("1_pbmt5")])
+metadata/_custom_type_script = "uid://c4sk7eniu4rge"

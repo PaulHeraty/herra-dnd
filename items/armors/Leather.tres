@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=2 format=3 uid="uid://3kraw7u1dnem"]
+
+[ext_resource type="Script" uid="uid://buqbd3v8wiknc" path="res://items/Armor.gd" id="1_h5hbd"]
+
+[resource]
+script = ExtResource("1_h5hbd")
+name = "Leather"
+cost = 10
+ac = 11
+weight = 10
+metadata/_custom_type_script = "uid://buqbd3v8wiknc"

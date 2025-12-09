@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=2 format=3 uid="uid://b2y0ujs0j2ysq"]
+
+[ext_resource type="Script" uid="uid://buqbd3v8wiknc" path="res://items/Armor.gd" id="1_3t1j8"]
+
+[resource]
+script = ExtResource("1_3t1j8")
+name = "Chain Shirt"
+armor_type = 1
+cost = 50
+ac = 13
+weight = 20
+metadata/_custom_type_script = "uid://buqbd3v8wiknc"

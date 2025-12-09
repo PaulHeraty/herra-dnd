@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=2 format=3 uid="uid://dsc45x35ud0qb"]
+
+[ext_resource type="Script" uid="uid://buqbd3v8wiknc" path="res://items/Armor.gd" id="1_rgavj"]
+
+[resource]
+script = ExtResource("1_rgavj")
+name = "Chain Mail"
+armor_type = 2
+cost = 75
+ac = 16
+weight = 55
+metadata/_custom_type_script = "uid://buqbd3v8wiknc"

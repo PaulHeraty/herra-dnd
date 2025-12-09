@@ -1,0 +1,102 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjielxrhkt30y"]
+
+[ext_resource type="Script" uid="uid://bybe16xrnmeap" path="res://scenes/UI/CharacterSheet/saving_throws_box.gd" id="1_2s3x3"]
+
+[node name="SavingThrowsBox" type="VBoxContainer"]
+script = ExtResource("1_2s3x3")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+text = "Saving Throws"
+horizontal_alignment = 1
+
+[node name="Strength" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="StrengthValue" type="Label" parent="Strength"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "+5"
+horizontal_alignment = 1
+
+[node name="StrengthLabel" type="Label" parent="Strength"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Strength"
+
+[node name="Dexterity" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="DexterityValue" type="Label" parent="Dexterity"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "-1"
+horizontal_alignment = 1
+
+[node name="DexterityLabel" type="Label" parent="Dexterity"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Dexterity"
+
+[node name="Constitution" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="ConstitutionValue" type="Label" parent="Constitution"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "+4"
+horizontal_alignment = 1
+
+[node name="ConstitutionLabel" type="Label" parent="Constitution"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Constitution"
+
+[node name="Intelligence" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="IntelligenceValue" type="Label" parent="Intelligence"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "+0"
+horizontal_alignment = 1
+
+[node name="IntelligenceLabel" type="Label" parent="Intelligence"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Intelligence"
+
+[node name="Wisdom" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="WisdomValue" type="Label" parent="Wisdom"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "+1"
+horizontal_alignment = 1
+
+[node name="WisdomLabel" type="Label" parent="Wisdom"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Wisdom"
+
+[node name="Charisma" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="CharismaValue" type="Label" parent="Charisma"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "-+2"
+horizontal_alignment = 1
+
+[node name="CharismaLabel" type="Label" parent="Charisma"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "Charisma"

@@ -1,0 +1,231 @@
+[gd_scene load_steps=5 format=3 uid="uid://beypv5k06nalq"]
+
+[ext_resource type="Script" uid="uid://dr1kgrckcse0e" path="res://scenes/UI/CharacterSheet/character_sheet.gd" id="1_1uxh1"]
+[ext_resource type="PackedScene" uid="uid://c888yvkqo30n3" path="res://scenes/UI/CharacterSheet/StatBox.tscn" id="1_frwtk"]
+[ext_resource type="PackedScene" uid="uid://bjielxrhkt30y" path="res://scenes/UI/CharacterSheet/SavingThrowsBox.tscn" id="2_ybr4j"]
+[ext_resource type="PackedScene" uid="uid://3xsarab7s1ws" path="res://scenes/UI/CharacterSheet/skills.tscn" id="3_3p36a"]
+
+[node name="CharacterSheet" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_1uxh1")
+metadata/_tab_index = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 41.0
+offset_top = 19.0
+offset_right = 1112.0
+offset_bottom = 615.0
+
+[node name="TitleInfo" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="CharNameLabel" type="Label" parent="VBoxContainer/TitleInfo"]
+layout_mode = 2
+text = "Character Name"
+
+[node name="CharName" type="Label" parent="VBoxContainer/TitleInfo"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Dunk"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/TitleInfo"]
+layout_mode = 2
+size_flags_horizontal = 8
+theme_override_constants/separation = 10
+
+[node name="ClassAndLevel" type="HBoxContainer" parent="VBoxContainer/TitleInfo/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="ClassLabel" type="Label" parent="VBoxContainer/TitleInfo/VBoxContainer/ClassAndLevel"]
+layout_mode = 2
+text = "Class"
+
+[node name="CharClass" type="Label" parent="VBoxContainer/TitleInfo/VBoxContainer/ClassAndLevel"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Fighter"
+
+[node name="LevelLabel" type="Label" parent="VBoxContainer/TitleInfo/VBoxContainer/ClassAndLevel"]
+layout_mode = 2
+text = "Level"
+
+[node name="CharLevel" type="Label" parent="VBoxContainer/TitleInfo/VBoxContainer/ClassAndLevel"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "1"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/TitleInfo/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="RaceLabel" type="Label" parent="VBoxContainer/TitleInfo/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Race"
+
+[node name="Race" type="Label" parent="VBoxContainer/TitleInfo/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Human"
+
+[node name="AlignmentLabel" type="Label" parent="VBoxContainer/TitleInfo/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Alignment"
+
+[node name="Alignment" type="Label" parent="VBoxContainer/TitleInfo/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Lawful Neutral"
+
+[node name="XPLabel" type="Label" parent="VBoxContainer/TitleInfo/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Experience Points"
+
+[node name="XP" type="Label" parent="VBoxContainer/TitleInfo/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0/1000"
+
+[node name="EverythingElse" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="Stats" type="VBoxContainer" parent="VBoxContainer/EverythingElse"]
+layout_mode = 2
+
+[node name="Strength" parent="VBoxContainer/EverythingElse/Stats" instance=ExtResource("1_frwtk")]
+layout_mode = 2
+
+[node name="Dexterity" parent="VBoxContainer/EverythingElse/Stats" instance=ExtResource("1_frwtk")]
+layout_mode = 2
+
+[node name="Constitution" parent="VBoxContainer/EverythingElse/Stats" instance=ExtResource("1_frwtk")]
+layout_mode = 2
+
+[node name="Intelligence" parent="VBoxContainer/EverythingElse/Stats" instance=ExtResource("1_frwtk")]
+layout_mode = 2
+
+[node name="Wisdom" parent="VBoxContainer/EverythingElse/Stats" instance=ExtResource("1_frwtk")]
+layout_mode = 2
+
+[node name="Charisma" parent="VBoxContainer/EverythingElse/Stats" instance=ExtResource("1_frwtk")]
+layout_mode = 2
+
+[node name="ThrowsAndSkills" type="VBoxContainer" parent="VBoxContainer/EverythingElse"]
+layout_mode = 2
+
+[node name="ProfBonus" type="HBoxContainer" parent="VBoxContainer/EverythingElse/ThrowsAndSkills"]
+layout_mode = 2
+
+[node name="PBLabel" type="Label" parent="VBoxContainer/EverythingElse/ThrowsAndSkills/ProfBonus"]
+layout_mode = 2
+text = "Proficiency Bonus"
+
+[node name="PB" type="Label" parent="VBoxContainer/EverythingElse/ThrowsAndSkills/ProfBonus"]
+layout_mode = 2
+text = "+2"
+
+[node name="SavingThrows" parent="VBoxContainer/EverythingElse/ThrowsAndSkills" instance=ExtResource("2_ybr4j")]
+layout_mode = 2
+
+[node name="Skills" parent="VBoxContainer/EverythingElse" instance=ExtResource("3_3p36a")]
+layout_mode = 2
+
+[node name="ACHPetc" type="VBoxContainer" parent="VBoxContainer/EverythingElse"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/EverythingElse/ACHPetc"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/EverythingElse/ACHPetc/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/EverythingElse/ACHPetc/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="AC" type="Label" parent="VBoxContainer/EverythingElse/ACHPetc/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "17"
+horizontal_alignment = 1
+
+[node name="ACLabel" type="Label" parent="VBoxContainer/EverythingElse/ACHPetc/VBoxContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Armor 
+Class"
+horizontal_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="VBoxContainer/EverythingElse/ACHPetc/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Initiative" type="Label" parent="VBoxContainer/EverythingElse/ACHPetc/VBoxContainer/HBoxContainer/VBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "-1"
+horizontal_alignment = 1
+
+[node name="InitiativeLabel" type="Label" parent="VBoxContainer/EverythingElse/ACHPetc/VBoxContainer/HBoxContainer/VBoxContainer3"]
+layout_mode = 2
+text = "Initiative"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/EverythingElse/ACHPetc/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Speed" type="Label" parent="VBoxContainer/EverythingElse/ACHPetc/VBoxContainer/HBoxContainer/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "30 feet"
+horizontal_alignment = 1
+
+[node name="SpeedLabel" type="Label" parent="VBoxContainer/EverythingElse/ACHPetc/VBoxContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Speed"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer/EverythingElse/ACHPetc"]
+layout_mode = 2
+
+[node name="HP" type="Label" parent="VBoxContainer/EverythingElse/ACHPetc/VBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "12/12"
+horizontal_alignment = 1
+
+[node name="HPLabel" type="Label" parent="VBoxContainer/EverythingElse/ACHPetc/VBoxContainer2"]
+layout_mode = 2
+text = "Hit Points"
+horizontal_alignment = 1
+
+[node name="Traits" type="VBoxContainer" parent="VBoxContainer/EverythingElse"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Trait1" type="Label" parent="VBoxContainer/EverythingElse/Traits"]
+layout_mode = 2
+text = "Second Wind
+.
+."
+
+[node name="Trait2" type="Label" parent="VBoxContainer/EverythingElse/Traits"]
+layout_mode = 2
+text = "Fighting Style (Defense)
+.
+.
+"
+
+[node name="Trait3" type="Label" parent="VBoxContainer/EverythingElse/Traits"]
+layout_mode = 2
+text = "Position of Priviledge
+.
+.
+"
+
+[node name="FeatsTraitsLabel" type="Label" parent="VBoxContainer/EverythingElse/Traits"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0.14901961, 1)
+text = "Features & Traits"

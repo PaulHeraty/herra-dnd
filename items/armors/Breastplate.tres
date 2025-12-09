@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Armor" load_steps=2 format=3 uid="uid://c5inr8747vwda"]
+
+[ext_resource type="Script" uid="uid://buqbd3v8wiknc" path="res://items/Armor.gd" id="1_12tjb"]
+
+[resource]
+script = ExtResource("1_12tjb")
+name = "Breastplate"
+armor_type = 1
+cost = 400
+ac = 14
+weight = 20
+metadata/_custom_type_script = "uid://buqbd3v8wiknc"
