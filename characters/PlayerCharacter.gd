@@ -28,6 +28,7 @@ func _ready() -> void:
 	set_ac()
 	if core_data.equipped_weapons[0].weapon_type == Weapon.WEAPON_TYPE.MARTIAL_RANGED:
 		attack_hit_audio = load("res://audio/combat/archer-shot.mp3")
+		attack_miss_audio = load("res://audio/combat/archer-shot.mp3")
 	else:
 		attack_hit_audio = load("res://audio/combat/sword-on-flesh.mp3")
 		attack_miss_audio = load("res://audio/combat/atk-sword-swing.mp3")

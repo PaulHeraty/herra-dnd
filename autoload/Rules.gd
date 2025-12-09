@@ -26,7 +26,8 @@ func saving_throw_check(st_mod: int, dc: int) -> bool:
 
 func attack_roll(p: ICombatEntity, ac: int) -> Dictionary:
 	var atk_mod: int = 0
-	var critical: bool = false
+	var critical_hit: bool = false
+	var critical_miss: bool = false
 	var prof_bonus: int = p.core_data.proficiency_bonus
 	var weapons = p.core_data.equipped_weapons
 	var damage: Dictionary = {}
@@ -46,15 +47,14 @@ func attack_roll(p: ICombatEntity, ac: int) -> Dictionary:
 		if roll == 1:
 			GameLog.add_entry("[color=red]Critical miss![/color]\n")
 			p.attack_miss()
-			return damage
 		if roll == 20:
-			critical = true
+			critical_hit = true
 			GameLog.add_entry("[color=orange]Critical hit![/color]\n")
 			
-		if roll + atk_mod + prof_bonus >= ac or critical:
+		if (roll + atk_mod + prof_bonus >= ac or critical_hit) and not critical_miss:
 			GameLog.add_entry("[color=green]" + p.core_data.name + " hits with " + w.name + "[/color]\n")
 			p.attack_hit()
-			damage = get_weapon_damage(w, damage, critical)
+			damage = get_weapon_damage(w, damage, critical_hit)
 		else:
 			p.attack_miss()
 			GameLog.add_entry("[color=red]" + p.core_data.name + " misses with " + w.name + "[/color]\n")
