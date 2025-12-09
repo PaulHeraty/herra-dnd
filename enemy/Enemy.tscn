@@ -1,12 +1,28 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3fu4ufa3bg6p"]
+[gd_scene load_steps=8 format=3 uid="uid://b3fu4ufa3bg6p"]
 
 [ext_resource type="Script" uid="uid://bx2qwdfqv5mf4" path="res://enemy/Enemy.gd" id="1_d1f0f"]
+[ext_resource type="Texture2D" uid="uid://evcxlgbh610q" path="res://sprites/enemies/skeleton.jpg" id="2_7lgfl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d1f0f"]
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7lgfl"]
 bg_color = Color(1, 0.16007765, 0, 1)
+
+[sub_resource type="Animation" id="Animation_7lgfl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Portrait:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_d1f0f"]
 resource_name = "hit"
@@ -24,21 +40,6 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 0, 0, 0.51900005), Color(1, 1, 1, 1), Color(1, 0, 0, 0.51900005), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_7lgfl"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Portrait:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5p6bu"]
 _data = {
 &"RESET": SubResource("Animation_7lgfl"),
@@ -50,8 +51,20 @@ script = ExtResource("1_d1f0f")
 
 [node name="Portrait" type="TextureRect" parent="."]
 unique_name_in_owner = true
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 128.0
+offset_bottom = 128.0
+texture = ExtResource("2_7lgfl")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="Portrait"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = 21.0

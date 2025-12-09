@@ -41,29 +41,37 @@ func _process(_delta: float) -> void:
 
 func attack_hit() -> void:
 	audio_stream_player.stream = attack_hit_audio
+	audio_stream_player.pitch_scale = randf_range(0.95, 1.05)
 	audio_stream_player.play()
 	pass
 	
 func attack_miss() -> void:
 	audio_stream_player.stream = attack_miss_audio
+	audio_stream_player.pitch_scale = randf_range(0.95, 1.05)
 	audio_stream_player.play()
 	pass
 	
 func roll_initiative() -> void:
 	var d: Dice = Dice.new()
 	initiative = d.roll(1, 20) + core_data.stats.dexterity_mod
-	GameLog.add_entry(core_data.name + " rolls " + str(initiative) + " initiative\n")
+	#GameLog.add_entry(core_data.name + " rolls " + str(initiative) + " initiative\n")
 
 func take_damage(dmg_type: DamageComponent.DAMAGE_TYPE, dmg_amount: int) -> void:
 	animation_player.play("hit")
 	GameLog.add_entry(entity_name + " taking " + str(dmg_amount) + " damage of type " + str(dmg_type) + "\n")
 	core_data.current_hp -= dmg_amount
-	GameLog.add_entry(entity_name + " has " + str(core_data.current_hp) + " left\n")
+	GameLog.add_entry(entity_name + " has " + str(core_data.current_hp) + " hps left\n")
 	if core_data.current_hp <= 0:
-		GameLog.add_entry(entity_name + " is DEAD!!!!\n")
-		is_alive = false
-		audio_stream_player.stream = death_audio
-		audio_stream_player.play()
+		player_dead()
+	pass
+	
+func player_dead() -> void:
+	GameLog.add_entry(entity_name + " is DEAD!!!!\n")
+	is_alive = false
+	audio_stream_player.stream = death_audio
+	audio_stream_player.play()
+	await animation_player.animation_finished
+	portrait.modulate = Color("ff0000", 0.5)
 	pass
 	
 func set_ac() -> void:

@@ -45,6 +45,7 @@ func attack_roll(p: ICombatEntity, ac: int) -> Dictionary:
 			+ str(atk_mod) + " + pb: " + str(prof_bonus) + " vs. AC: " + str(ac) + "\n")
 		if roll == 1:
 			GameLog.add_entry("[color=red]Critical miss![/color]\n")
+			p.attack_miss()
 			return damage
 		if roll == 20:
 			critical = true

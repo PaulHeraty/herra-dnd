@@ -11,7 +11,7 @@ func roll_initiative() -> void:
 	initiative = 0
 	pass
 
-func take_damage(dmg_type: DamageComponent.DAMAGE_TYPE, dmg_amount: int) -> void:
+func take_damage(_dmg_type: DamageComponent.DAMAGE_TYPE, _dmg_amount: int) -> void:
 	# Should be overridden
 	pass
 	

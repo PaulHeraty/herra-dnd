@@ -1,5 +1,7 @@
 extends Node
 
+signal enemy_selected(enemy)
+
 const ENEMY = preload("res://enemy/Enemy.tscn")
 #const ENEMY = preload("res://core/ICombatEntity.tscn")
 const SKELETON_ENEMY: Resource = preload("res://enemy/enemies/Skeleton.tres")
@@ -21,5 +23,10 @@ func add_enemy_instance(enemy_type: Resource) -> void:
 	var enemy = ENEMY.instantiate()
 	enemy.core_data = enemy_type
 	get_tree().get_root().get_node("/root/Main/Enemies").add_child(enemy)
+	enemy.selected.connect(_on_enemy_selected)
 	enemy_list.append(enemy)
+	pass
+
+func _on_enemy_selected(enemy:Enemy) -> void:
+	enemy_selected.emit(enemy)
 	pass

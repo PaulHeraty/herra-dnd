@@ -16,18 +16,18 @@ func _ready() -> void:
 	draw_players()
 	draw_monsters()
 	
-	var p = PartyManager.party[2]
-	GameLog.add_entry("[color=yellow]\nTest Ability Check[/color]\n")
-	GameLog.add_entry(str(Rules.ability_check(p.core_data.stats.strength_mod, 10)))
-	
-	GameLog.add_entry("[color=yellow]\nTest Skill Check[/color]\n")
-	GameLog.add_entry(str(Rules.skill_check(p.core_data.skills.stealth, 10)))
-	
-	GameLog.add_entry("[color=yellow]\nTest Saving Throw Check[/color]\n")
-	GameLog.add_entry(str(Rules.saving_throw_check(p.core_data.saving_throws.constitution, 10)))
-	
-	GameLog.add_entry("[color=yellow]\nTest Attack Roll[/color]\n")
-	GameLog.add_entry(str(Rules.attack_roll(p, 12)))
+	#var p = PartyManager.party[2]
+	#GameLog.add_entry("[color=yellow]\nTest Ability Check[/color]\n")
+	#GameLog.add_entry(str(Rules.ability_check(p.core_data.stats.strength_mod, 10)))
+	#
+	#GameLog.add_entry("[color=yellow]\nTest Skill Check[/color]\n")
+	#GameLog.add_entry(str(Rules.skill_check(p.core_data.skills.stealth, 10)))
+	#
+	#GameLog.add_entry("[color=yellow]\nTest Saving Throw Check[/color]\n")
+	#GameLog.add_entry(str(Rules.saving_throw_check(p.core_data.saving_throws.constitution, 10)))
+	#
+	#GameLog.add_entry("[color=yellow]\nTest Attack Roll[/color]\n")
+	#GameLog.add_entry(str(Rules.attack_roll(p, 12)))
 	
 	#GameLog.add_entry("[color=yellow]\nTEST ENEMY[/color]\n")
 	#var skeleton = EnemyManager.enemy_list[0]
@@ -36,7 +36,6 @@ func _ready() -> void:
 	#GameLog.add_entry("AC: " + str(skeleton.core_data.ac) +"\n")
 	#GameLog.add_entry("Weapon: " + skeleton.core_data.equipped_weapons[0].name +"\n")
 	#GameLog.add_entry("XP: " + str(skeleton.core_data.xp) +"\n")
-	await GameLog.advance
 	
 	GameLog.add_entry("[color=yellow]\nTEST COMBAT[/color]\n")
 	CombatManager.turn_loop()
