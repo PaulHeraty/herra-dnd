@@ -20,6 +20,7 @@ metadata/_custom_type_script = "uid://ccxeegh34n548"
 [resource]
 script = ExtResource("1_a81l2")
 name = "Defty"
+portrait_path = "res://sprites/characters/portraits/defty.jpg"
 class_type = 1
 max_hp = 9
 stats = SubResource("Resource_ln7y1")

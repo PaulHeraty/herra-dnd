@@ -19,6 +19,8 @@ class_name CharacterSheet extends Control
 @onready var intelligence: VBoxContainer = %Intelligence
 @onready var wisdom: VBoxContainer = %Wisdom
 @onready var charisma: VBoxContainer = %Charisma
+@onready var portrait: TextureRect = %Portrait
+
 
 var player_char: PlayerCharacter
 
@@ -32,6 +34,7 @@ func set_character(pc: PlayerCharacter) -> void:
 	
 func update_stats() -> void:
 	char_name.text = player_char.name
+	set_portrait()
 	char_class.text = get_class_string(player_char.core_data.class_type)
 	char_level.text = str(player_char.core_data.level)
 	background.text = get_background_string(player_char.core_data.background)
@@ -51,6 +54,14 @@ func update_stats() -> void:
 	intelligence.update("Intelligence", sts.intelligence_mod, sts.intelligence)
 	wisdom.update("Wisdom", sts.wisdom_mod, sts.wisdom)
 	charisma.update("Charisma", sts.charisma_mod, sts.charisma)
+	pass
+
+func set_portrait() -> void:
+	if player_char.core_data and player_char.core_data.portrait_path != "":
+		portrait.texture = load(player_char.core_data.portrait_path)
+		portrait.custom_minimum_size = Vector2(256, 256)
+		portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		portrait.expand = true
 	pass
 
 func get_initiative_string(c: PlayerCharacter) -> String:

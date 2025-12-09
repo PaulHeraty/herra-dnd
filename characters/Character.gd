@@ -1,6 +1,10 @@
 class_name Character extends Resource
 
 @export var name: String = ""
+@export var portrait_path: String = ""
+@export var attack_hit_sound: String = ""
+@export var attack_miss_sound: String = ""
+@export var damage_sound: String = ""
 @export var class_type: Class.ClassType = Class.ClassType.FIGHTER
 @export var race: Race.RaceType = Race.RaceType.HUMAN
 @export var background: Background.BackgroundType = Background.BackgroundType.CRIMINAL
@@ -25,4 +29,3 @@ var ac: int = 0
 var speed: int = 0
 var current_hp: int = 0
 var xp: int = 0
-var is_alive: bool = true

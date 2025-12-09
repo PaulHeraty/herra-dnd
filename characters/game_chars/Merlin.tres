@@ -19,6 +19,7 @@ metadata/_custom_type_script = "uid://ccxeegh34n548"
 [resource]
 script = ExtResource("1_dvskx")
 name = "Merlin"
+portrait_path = "res://sprites/characters/portraits/merlin.jpg"
 class_type = 2
 race = 3
 background = 4

@@ -50,10 +50,12 @@ func attack_roll(p: ICombatEntity, ac: int) -> Dictionary:
 			critical = true
 			GameLog.add_entry("[color=orange]Critical hit![/color]\n")
 			
-		if roll + atk_mod + prof_bonus >= ac or roll == 20:
+		if roll + atk_mod + prof_bonus >= ac or critical:
 			GameLog.add_entry("[color=green]" + p.core_data.name + " hits with " + w.name + "[/color]\n")
+			p.attack_hit()
 			damage = get_weapon_damage(w, damage, critical)
 		else:
+			p.attack_miss()
 			GameLog.add_entry("[color=red]" + p.core_data.name + " misses with " + w.name + "[/color]\n")
 	return damage
 	

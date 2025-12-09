@@ -1,14 +1,42 @@
 class_name Enemy extends ICombatEntity
 
-@export var core_data: EnemyCore
+@onready var portrait: TextureRect = %Portrait
+@onready var health_bar: ProgressBar = $HealthBar
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 
+var current_hp: int = 0
+var max_hp: int = 0
+var is_alive: bool = true
+
+var core_data: EnemyCore
+
+var attack_hit_audio: AudioStream
+var attack_miss_audio: AudioStream
+var damage_audio: AudioStream
+var death_audio: AudioStream
+	
 func _ready() -> void:
 	set_hp()
-	GameLog.add_entry("Monster: " + core_data.name + " has " + str(core_data.current_hp) + " hit points\n" )
 	entity_name = core_data.name
 	entity_type = ENTITY_TYPE.ENEMY
+	health_bar.max_value = max_hp
+	health_bar.value = current_hp
+	if core_data and core_data.portrait_path != "":
+		portrait.texture = load(core_data.portrait_path)
+		portrait.custom_minimum_size = Vector2(128, 128)
+		portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		portrait.expand = true
+	attack_hit_audio = load(core_data.attack_hit_sound)
+	attack_miss_audio = load(core_data.attack_miss_sound)
+	damage_audio = load(core_data.damage_sound)
+	death_audio = load(core_data.death_sound)
 	pass
 
+func _process(_delta: float) -> void:
+	health_bar.value = current_hp
+	pass
+	
 func roll_initiative() -> void:
 	var d: Dice = Dice.new()
 	initiative = d.roll(1, 20) + core_data.stats.dexterity_mod
@@ -16,20 +44,35 @@ func roll_initiative() -> void:
 	pass
 	
 func set_hp() -> void:
-	core_data.current_hp = calculate_hp(core_data.hit_dice)
-	core_data.max_hp = core_data.current_hp 
+	current_hp = calculate_hp(core_data.hit_dice)
+	max_hp = current_hp 
 	pass
 
 func take_damage(dmg_type: DamageComponent.DAMAGE_TYPE, dmg_amount: int) -> void:
-	# Should be overridden
+	animation_player.play("hit")
+	audio_stream_player.stream = damage_audio
+	audio_stream_player.play()
 	GameLog.add_entry(entity_name + " taking " + str(dmg_amount) + " damage of type " + str(dmg_type) + "\n")
-	core_data.current_hp -= dmg_amount
-	GameLog.add_entry(entity_name + " has " + str(core_data.current_hp) + " left\n")
-	if core_data.current_hp <= 0:
+	current_hp -= dmg_amount
+	GameLog.add_entry(entity_name + " has " + str(current_hp) + " left\n")
+	if current_hp <= 0:
 		GameLog.add_entry(entity_name + " is DEAD!!!!\n")
-		core_data.is_alive = false
+		is_alive = false
+		audio_stream_player.stream = death_audio
+		audio_stream_player.play()
+		
+	pass
+
+func attack_hit() -> void:
+	audio_stream_player.stream = attack_hit_audio
+	audio_stream_player.play()
 	pass
 	
+func attack_miss() -> void:
+	audio_stream_player.stream = attack_miss_audio
+	audio_stream_player.play()
+	pass
+
 func calculate_hp(hit_dice: HitDice) -> int:
 	var d: Dice = Dice.new()
 	var hps = d.roll(hit_dice.dice_count, hit_dice.dice_sides) + hit_dice.plus_amount

@@ -24,12 +24,12 @@ func add_players() -> void:
 func add_player_instance(toon: Resource) -> void:
 	var player = PLAYER_CHARACTER.instantiate()
 	player.core_data = toon
-	get_tree().get_root().get_node("/root/PartyManager").add_child(player)
+	get_tree().get_root().get_node("/root/Main/Party").add_child(player)
 	party.append(player)
 	pass
 
 func setup_party() -> void:
-	for p:PlayerCharacter in get_tree().get_root().get_node("/root/PartyManager").get_children():
+	for p:PlayerCharacter in get_tree().get_root().get_node("/root/Main/Party").get_children():
 		var sts = p.core_data.stats
 		var c_type = p.core_data.class_type
 		var pb = p.core_data.proficiency_bonus

@@ -27,6 +27,11 @@ metadata/_custom_type_script = "uid://ccxeegh34n548"
 [resource]
 script = ExtResource("3_thjen")
 name = "Skeleton"
+portrait_path = "res://sprites/enemies/skeleton.jpg"
+attack_hit_sound = "res://audio/combat/sword-on-flesh.mp3"
+attack_miss_sound = "res://audio/combat/atk-sword-swing.mp3"
+damage_sound = "res://audio/combat/sword-on-flesh.mp3"
+death_sound = "res://audio/combat/demon-scream.mp3"
 ac = 13
 hit_dice = SubResource("Resource_oas0w")
 xp = 50

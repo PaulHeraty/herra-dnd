@@ -1,6 +1,11 @@
 class_name EnemyCore extends Resource
 
 @export var name: String = ""
+@export var portrait_path: String = ""
+@export var attack_hit_sound: String = ""
+@export var attack_miss_sound: String = ""
+@export var damage_sound: String = ""
+@export var death_sound: String = ""
 @export var ac: int = 0
 @export var hit_dice: HitDice
 @export var speed: int = 30
@@ -9,7 +14,7 @@ class_name EnemyCore extends Resource
 @export var alignment: Alignment.AlignmentType = Alignment.AlignmentType.TRUE_NEUTRAL
 
 @export_category("Stats")
-@export var stats: Stats 
+@export var stats: Stats
 
 @export var damage_vulnerabilities: Array[String]
 @export var damage_immunities: Array[String]
@@ -20,9 +25,6 @@ class_name EnemyCore extends Resource
 @export var equipped_weapons: Array[Weapon]
 @export var equipped_armor: Array[Armor]
 
-var max_hp: int = 0
-var current_hp: int = 0
 var saving_throws: SavingThrows = SavingThrows.new()
 var skills: Skills = Skills.new()
 var proficiency_bonus: int = 2
-var is_alive: bool = true

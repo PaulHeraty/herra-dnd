@@ -20,6 +20,7 @@ metadata/_custom_type_script = "uid://ccxeegh34n548"
 [resource]
 script = ExtResource("1_46o5h")
 name = "Ranga"
+portrait_path = "res://sprites/characters/portraits/ranga.jpg"
 background = 3
 alignment = 0
 max_hp = 12

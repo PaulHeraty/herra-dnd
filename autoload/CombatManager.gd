@@ -8,17 +8,18 @@ func turn_loop() -> void:
 	determine_initiative_order()
 	
 	for actor in turn_order:
-		if actor.core_data.is_alive == false:
+		if actor.is_alive == false:
 			continue
 		GameLog.add_entry("\n" + actor.entity_name + "'s turn\n")
-		await GameLog.advance
 		# Select target
 		var target:ICombatEntity = select_target(actor)
 		if target == null:
 			GameLog.add_entry("[color=yellow]All of one side are DEAD![/color]\n")
 			return
 		GameLog.add_entry(actor.entity_name + " is attacking " + target.entity_name + "\n")
+		await GameLog.advance
 		make_attack(actor, target)
+	GameLog.add_entry("End of turn...")
 	pass
 
 func select_target(actor: ICombatEntity) -> ICombatEntity:
@@ -30,14 +31,14 @@ func select_target(actor: ICombatEntity) -> ICombatEntity:
 func get_first_enemy() -> ICombatEntity:
 	var remaining_enemies: Array[ICombatEntity] = []
 	for actor in turn_order:
-		if actor.entity_type == actor.ENTITY_TYPE.ENEMY and actor.core_data.is_alive:
+		if actor.entity_type == actor.ENTITY_TYPE.ENEMY and actor.is_alive:
 			return actor
 	return null
 
 func get_player_target() -> ICombatEntity:
 	var remaining_players: Array[ICombatEntity] = []
 	for actor in turn_order:
-		if actor.entity_type == actor.ENTITY_TYPE.PLAYER and actor.core_data.is_alive: 
+		if actor.entity_type == actor.ENTITY_TYPE.PLAYER and actor.is_alive: 
 			remaining_players.append(actor)
 	var target = randi_range(0, remaining_players.size()-1)
 	return remaining_players[target]
@@ -45,12 +46,12 @@ func get_player_target() -> ICombatEntity:
 func determine_initiative_order() -> void:
 	# make a DEX roll (inc dex mod) per mob/PC
 	for player in PartyManager.party:
-		if player.core_data.is_alive:
+		if player.is_alive:
 			player.roll_initiative()
 			turn_order.append(player)
 		
 	for monster in EnemyManager.enemy_list:
-		if monster.core_data.is_alive:
+		if monster.is_alive:
 			monster.roll_initiative()
 			turn_order.append(monster)
 		

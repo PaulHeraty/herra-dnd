@@ -14,3 +14,11 @@ func roll_initiative() -> void:
 func take_damage(dmg_type: DamageComponent.DAMAGE_TYPE, dmg_amount: int) -> void:
 	# Should be overridden
 	pass
+	
+func attack_hit() -> void:
+	# Should be overridden
+	pass
+
+func attack_miss() -> void:
+	# Should be overridden
+	pass

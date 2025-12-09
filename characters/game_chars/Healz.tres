@@ -21,6 +21,7 @@ metadata/_custom_type_script = "uid://ccxeegh34n548"
 [resource]
 script = ExtResource("1_781ok")
 name = "Healz"
+portrait_path = "res://sprites/characters/portraits/healz.jpg"
 class_type = 3
 background = 1
 alignment = 1
