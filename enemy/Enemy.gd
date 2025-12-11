@@ -14,10 +14,6 @@ var is_alive: bool = true
 
 var core_data: EnemyCore
 
-var attack_hit_audio: AudioStream
-var attack_miss_audio: AudioStream
-var damage_audio: AudioStream
-var death_audio: AudioStream
 var fail_audio: AudioStream = load("res://audio/combat/meta-failure.mp3")
 	
 func _ready() -> void:
@@ -73,6 +69,12 @@ func take_damage(dmg_type: DamageComponent.DAMAGE_TYPE, dmg_amount: int) -> void
 		await enemy_dead()
 	pass
 
+func heal(heal_amount: int) -> void:
+	GameLog.add_entry(entity_name + " is healed for " + str(heal_amount) + "\n")
+	core_data.current_hp += heal_amount
+	GameLog.add_entry(entity_name + " has " + str(core_data.current_hp) + " hp left\n")
+	pass
+	
 func enemy_dead() -> void:
 	GameLog.add_entry(entity_name + " is DEAD!!!!\n")
 	is_alive = false

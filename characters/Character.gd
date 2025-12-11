@@ -29,3 +29,4 @@ var ac: int = 0
 var speed: int = 0
 var current_hp: int = 0
 var xp: int = 0
+var known_spells: Array[Spell]

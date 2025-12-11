@@ -8,11 +8,6 @@ class_name PlayerCharacter extends ICombatEntity
 var core_data: Character
 var is_alive: bool = true
 
-var attack_hit_audio: AudioStream
-var attack_miss_audio: AudioStream
-var damage_audio: AudioStream
-var death_audio: AudioStream
-
 func _ready() -> void:
 	core_data.speed = get_race_speed(core_data.race)
 	core_data.current_hp = core_data.max_hp
@@ -65,6 +60,12 @@ func take_damage(dmg_type: DamageComponent.DAMAGE_TYPE, dmg_amount: int) -> void
 	if core_data.current_hp <= 0:
 		player_dead()
 	pass
+
+func heal(heal_amount: int) -> void:
+	GameLog.add_entry(entity_name + " is healed for " + str(heal_amount) + "\n")
+	core_data.current_hp += heal_amount
+	GameLog.add_entry(entity_name + " has " + str(core_data.current_hp) + " hp left\n")
+	pass
 	
 func player_dead() -> void:
 	GameLog.add_entry(entity_name + " is UNCONSCIOUS!!!!\n")
@@ -108,3 +109,7 @@ func get_race_speed(race: Race.RaceType) -> int:
 			return 30
 		_:
 			return 0
+
+func learn_spell(spell: Spell) -> void:
+	core_data.known_spells.append(spell)
+	pass

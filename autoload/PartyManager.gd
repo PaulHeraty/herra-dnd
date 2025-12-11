@@ -17,9 +17,11 @@ func add_players() -> void:
 	party.clear()
 	add_player_instance(PLAYER1)
 	add_player_instance(PLAYER2)
+	add_player_instance(PLAYER2)
 	add_player_instance(PLAYER3)
 	add_player_instance(PLAYER4)
 	add_player_instance(PLAYER5)
+	party[1].learn_spell(preload("res://spells/cure_wounds.gd").new())
 	
 func add_player_instance(toon: Resource) -> void:
 	var player = PLAYER_CHARACTER.instantiate()

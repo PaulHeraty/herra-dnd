@@ -37,7 +37,14 @@ func turn_loop() -> void:
 			
 		GameLog.add_entry("\n" + actor.entity_name + "'s turn: ")
 		# Choose action (attack, cast, etc)
-		
+		if actor.entity_name == "Healz":
+			SpellMenu.open(actor.core_skills.known_spells)
+			var chosen_spell = await SpellMenu.spell_selected
+			GameLog.add_entry("Selected spell: " + chosen_spell.name)
+			
+			
+	
+	
 		# Select target
 		await select_target(actor)
 		GameLog.add_entry(actor.entity_name + " is attacking " + target.entity_name + "\n")
