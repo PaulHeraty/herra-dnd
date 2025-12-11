@@ -13,9 +13,8 @@ func _ready() -> void:
 	
 	PartyManager.setup_party()
 	EnemyManager.add_enemies()
-	draw_players()
 	draw_monsters()
-	
+	draw_players()
 	#var p = PartyManager.party[2]
 	#GameLog.add_entry("[color=yellow]\nTest Ability Check[/color]\n")
 	#GameLog.add_entry(str(Rules.ability_check(p.core_data.stats.strength_mod, 10)))
@@ -37,9 +36,13 @@ func _ready() -> void:
 	#GameLog.add_entry("Weapon: " + skeleton.core_data.equipped_weapons[0].name +"\n")
 	#GameLog.add_entry("XP: " + str(skeleton.core_data.xp) +"\n")
 	
-	GameLog.add_entry("[color=yellow]\nTEST COMBAT[/color]\n")
-	CombatManager.turn_loop()
+	GameLog.add_entry("[color=cyan]\nTEST COMBAT[/color]\n")
+	CombatManager.enter_combat()
 	pass
+
+func _process(_delta: float) -> void:
+	draw_monsters()
+	draw_players()
 
 func draw_players() -> void:
 	for i in PartyManager.party.size():

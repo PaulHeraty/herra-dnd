@@ -70,7 +70,7 @@ func take_damage(dmg_type: DamageComponent.DAMAGE_TYPE, dmg_amount: int) -> void
 	current_hp -= dmg_amount
 	GameLog.add_entry(entity_name + " has " + str(current_hp) + " hp left\n")
 	if current_hp <= 0:
-		enemy_dead()
+		await enemy_dead()
 	pass
 
 func enemy_dead() -> void:
@@ -80,6 +80,9 @@ func enemy_dead() -> void:
 	audio_stream_player.play()
 	await animation_player.animation_finished
 	portrait.modulate = Color("ff0000", 0.5)
+	var i: int = EnemyManager.enemy_list.find(self)
+	EnemyManager.enemy_list.remove_at(i)
+	queue_free()
 	pass
 
 func attack_hit() -> void:

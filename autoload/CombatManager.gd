@@ -2,28 +2,69 @@ extends Node
 
 var turn_order: Array[ICombatEntity] = []
 var target: ICombatEntity = null
+var players_alive: bool
+var enemies_alive: bool
+var combat_over: bool = false
+
+func enter_combat() -> void:
+	players_alive = true
+	enemies_alive = true
+	combat_over = false
+	var num_enemies: int = EnemyManager.enemy_list.size()
+	var num_players: int = PartyManager.party.size()
+	GameLog.add_entry("Entering combat between " + str(num_players) + " players and " + str(num_enemies) + " enemies!\n")
+	
+	while players_alive and enemies_alive:
+		await turn_loop()
+	pass
 
 func turn_loop() -> void:
-	GameLog.add_entry("Beginning turn...\n")
+	GameLog.add_entry("[color=yellow]Starting new turn...\n[/color]")
 	turn_order.clear()
 	determine_initiative_order()
 	
 	for actor in turn_order:
-		if actor.is_alive == false:
+		check_party_alive()
+		check_enemies_alive()
+		
+		if combat_over:
+			GameLog.add_entry("Combat is over!!!")
+			return
+			
+		if actor == null or actor.is_alive == false:
+			print("HERE")
 			continue
+			
 		GameLog.add_entry("\n" + actor.entity_name + "'s turn: ")
 		# Choose action (attack, cast, etc)
+		
 		# Select target
 		await select_target(actor)
-		if target == null:
-			GameLog.add_entry("[color=yellow]All of one side are DEAD![/color]\n")
-			return
 		GameLog.add_entry(actor.entity_name + " is attacking " + target.entity_name + "\n")
 		if actor.entity_type == actor.ENTITY_TYPE.ENEMY:
-			await GameLog.advance
-		make_attack(actor)
+			await GameLog.advance # wait for keypress
+		await make_attack(actor)
+		
 		await get_tree().create_timer(0.5).timeout
-	GameLog.add_entry("End of turn...")
+	GameLog.add_entry("End of turn...\n\n")
+	pass 
+
+func check_party_alive() -> void:
+	for p in PartyManager.party:
+		if p.is_alive:
+			players_alive = true
+	if not players_alive:
+		GameLog.add_entry("[color=red]All players are dead!\n")
+		combat_over = true
+	pass
+	
+func check_enemies_alive() -> void:
+	if EnemyManager.enemy_list.size() > 0:
+		enemies_alive = true
+	else:
+		enemies_alive = false
+		GameLog.add_entry("[color=red]All enemies are dead!\n")
+		combat_over = true
 	pass
 
 func select_target(actor: ICombatEntity) -> void:
@@ -40,6 +81,8 @@ func select_target(actor: ICombatEntity) -> void:
 	#return null
 
 func select_target_for_player_turn():
+	if enemies_alive == false:
+		return
 	GameLog.add_entry("[color=orange]Select a target.\n[/color]")
 	var signal_args = await EnemyManager.enemy_selected
 	target = signal_args
@@ -47,6 +90,8 @@ func select_target_for_player_turn():
 func get_player_target() -> void:
 	var remaining_players: Array[ICombatEntity] = []
 	for actor in turn_order:
+		if actor == null:
+			continue
 		if actor.entity_type == actor.ENTITY_TYPE.PLAYER and actor.is_alive: 
 			remaining_players.append(actor)
 	var target_index = randi_range(0, remaining_players.size()-1)
@@ -91,5 +136,6 @@ func make_attack(attacker: ICombatEntity) -> void:
 	for key in dmg.keys():
 		var dmg_type: DamageComponent.DAMAGE_TYPE = key
 		var dmg_amount: int = dmg[key]
-		target.take_damage(dmg_type, dmg_amount)
+		# Need await here to ensure that enemy is correctly killed as needed
+		await target.take_damage(dmg_type, dmg_amount)
 	pass

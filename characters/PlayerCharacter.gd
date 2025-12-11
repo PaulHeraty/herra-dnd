@@ -67,7 +67,7 @@ func take_damage(dmg_type: DamageComponent.DAMAGE_TYPE, dmg_amount: int) -> void
 	pass
 	
 func player_dead() -> void:
-	GameLog.add_entry(entity_name + " is DEAD!!!!\n")
+	GameLog.add_entry(entity_name + " is UNCONSCIOUS!!!!\n")
 	is_alive = false
 	audio_stream_player.stream = death_audio
 	audio_stream_player.play()
