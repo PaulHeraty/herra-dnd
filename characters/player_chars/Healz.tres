@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=11 format=3 uid="uid://h0ggs3isqihr"]
+
+[ext_resource type="Script" uid="uid://buqbd3v8wiknc" path="res://items/Armor.gd" id="1_bbb4o"]
+[ext_resource type="Resource" uid="uid://dsc45x35ud0qb" path="res://items/armors/ChainMail.tres" id="2_4sl2m"]
+[ext_resource type="Script" uid="uid://dwl0xsytv4d4v" path="res://items/Weapon.gd" id="2_cjphi"]
+[ext_resource type="Resource" uid="uid://ekc8f23hgkky" path="res://items/armors/Shield.tres" id="3_8756t"]
+[ext_resource type="Script" uid="uid://84dploabn4g6" path="res://spells/spell.gd" id="3_f05uj"]
+[ext_resource type="Script" uid="uid://c4sk7eniu4rge" path="res://characters/CharacterData.gd" id="4_jb6fx"]
+[ext_resource type="Resource" uid="uid://dry7rce0k73uo" path="res://items/weapons/Warhammer.tres" id="5_sqisq"]
+[ext_resource type="Resource" uid="uid://bosgu6h3cokso" path="res://spells/CureWounds.tres" id="7_8756t"]
+[ext_resource type="Script" uid="uid://ccxeegh34n548" path="res://characters/Stats.gd" id="8_vqpbc"]
+
+[sub_resource type="Resource" id="Resource_jqqy8"]
+script = ExtResource("8_vqpbc")
+strength = 14
+dexterity = 8
+constitution = 15
+intelligence = 10
+wisdom = 16
+charisma = 12
+metadata/_custom_type_script = "uid://ccxeegh34n548"
+
+[resource]
+script = ExtResource("4_jb6fx")
+name = "Healz"
+portrait_path = "res://sprites/characters/portraits/healz.jpg"
+class_type = 3
+race = 1
+background = 1
+max_hp = 11
+stats = SubResource("Resource_jqqy8")
+proficiencies = Array[int]([9, 14])
+equipped_weapons = Array[ExtResource("2_cjphi")]([ExtResource("5_sqisq")])
+equipped_armor = Array[ExtResource("1_bbb4o")]([ExtResource("2_4sl2m"), ExtResource("3_8756t")])
+known_spells = Array[ExtResource("3_f05uj")]([ExtResource("7_8756t")])
+attack_miss_sound_path = "res://audio/combat/atk-sword-swing.mp3"
+damage_sound_path = "res://audio/combat/sword-on-flesh.mp3"
+death_sound_path = "res://audio/combat/grunt.mp3"
+metadata/_custom_type_script = "uid://c4sk7eniu4rge"

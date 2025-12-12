@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=9 format=3 uid="uid://but5spo3posq5"]
+
+[ext_resource type="Script" uid="uid://buqbd3v8wiknc" path="res://items/Armor.gd" id="1_4cxx5"]
+[ext_resource type="Script" uid="uid://dwl0xsytv4d4v" path="res://items/Weapon.gd" id="2_shp2t"]
+[ext_resource type="Resource" uid="uid://3kraw7u1dnem" path="res://items/armors/Leather.tres" id="2_wx2gg"]
+[ext_resource type="Script" uid="uid://84dploabn4g6" path="res://spells/spell.gd" id="3_g567b"]
+[ext_resource type="Resource" uid="uid://wi3hdumynhp0" path="res://items/weapons/Longbow.tres" id="4_m2j1p"]
+[ext_resource type="Script" uid="uid://c4sk7eniu4rge" path="res://characters/CharacterData.gd" id="4_wx2gg"]
+[ext_resource type="Script" uid="uid://ccxeegh34n548" path="res://characters/Stats.gd" id="7_p0lob"]
+
+[sub_resource type="Resource" id="Resource_gw5ih"]
+script = ExtResource("7_p0lob")
+strength = 14
+dexterity = 16
+constitution = 15
+intelligence = 11
+wisdom = 13
+charisma = 9
+metadata/_custom_type_script = "uid://ccxeegh34n548"
+
+[resource]
+script = ExtResource("4_wx2gg")
+name = "Ranga"
+portrait_path = "res://sprites/characters/portraits/ranga.jpg"
+background = 3
+max_hp = 12
+stats = SubResource("Resource_gw5ih")
+proficiencies = Array[int]([5, 11])
+equipped_weapons = Array[ExtResource("2_shp2t")]([ExtResource("4_m2j1p")])
+equipped_armor = Array[ExtResource("1_4cxx5")]([ExtResource("2_wx2gg")])
+attack_hit_sound_path = "res://audio/combat/atk-regular-arrow-shot.mp3"
+attack_miss_sound_path = "res://audio/combat/atk-regular-arrow-shot.mp3"
+damage_sound_path = "res://audio/combat/sword-on-flesh.mp3"
+death_sound_path = "res://audio/combat/grunt.mp3"
+metadata/_custom_type_script = "uid://c4sk7eniu4rge"

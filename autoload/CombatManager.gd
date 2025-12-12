@@ -1,7 +1,7 @@
 extends Node
 
-var turn_order: Array[ICombatEntity] = []
-var target: ICombatEntity = null
+var turn_order: Array[CombatEntity] = []
+var target: CombatEntity = null
 var players_alive: bool
 var enemies_alive: bool
 var combat_over: bool = false
@@ -38,13 +38,10 @@ func turn_loop() -> void:
 		GameLog.add_entry("\n" + actor.entity_name + "'s turn: ")
 		# Choose action (attack, cast, etc)
 		if actor.entity_name == "Healz":
-			SpellMenu.open(actor.core_skills.known_spells)
+			SpellMenu.open(actor.known_spells)
 			var chosen_spell = await SpellMenu.spell_selected
-			GameLog.add_entry("Selected spell: " + chosen_spell.name)
+			GameLog.add_entry("Selected spell: " + chosen_spell.name + "\n")
 			
-			
-	
-	
 		# Select target
 		await select_target(actor)
 		GameLog.add_entry(actor.entity_name + " is attacking " + target.entity_name + "\n")
@@ -74,7 +71,7 @@ func check_enemies_alive() -> void:
 		combat_over = true
 	pass
 
-func select_target(actor: ICombatEntity) -> void:
+func select_target(actor: CombatEntity) -> void:
 	if actor.entity_type == actor.ENTITY_TYPE.PLAYER:
 		await select_target_for_player_turn()
 	else:
@@ -95,7 +92,7 @@ func select_target_for_player_turn():
 	target = signal_args
 
 func get_player_target() -> void:
-	var remaining_players: Array[ICombatEntity] = []
+	var remaining_players: Array[CombatEntity] = []
 	for actor in turn_order:
 		if actor == null:
 			continue
@@ -121,7 +118,7 @@ func determine_initiative_order() -> void:
 	_print_turn_order()
 	pass
 	
-func _sort_by_initiative(a: ICombatEntity, b: ICombatEntity) -> bool:
+func _sort_by_initiative(a: CombatEntity, b: CombatEntity) -> bool:
 	return a.initiative > b.initiative  # sort descending
 	
 func _print_turn_order():
@@ -130,13 +127,13 @@ func _print_turn_order():
 		GameLog.add_entry(actor.entity_name + " => " + str(actor.initiative) + ", ")
 	GameLog.add_entry("\n")
 	
-func make_attack(attacker: ICombatEntity) -> void:
+func make_attack(attacker: CombatEntity) -> void:
 	# attack roll
 	var ac = 0
 	if target.entity_type == target.ENTITY_TYPE.ENEMY:
-		ac = target.core_data.ac
+		ac = target.ac
 	else:
-		ac = target.core_data.ac
+		ac = target.ac
 	var dmg: Dictionary = Rules.attack_roll(attacker, ac)
 	
 	# death checks

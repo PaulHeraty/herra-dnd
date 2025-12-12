@@ -1,0 +1,44 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=10 format=3 uid="uid://2uj6x0gam7vy"]
+
+[ext_resource type="Script" uid="uid://buqbd3v8wiknc" path="res://items/Armor.gd" id="1_vddo5"]
+[ext_resource type="Script" uid="uid://dwl0xsytv4d4v" path="res://items/Weapon.gd" id="2_xi0s2"]
+[ext_resource type="Resource" uid="uid://t48e0fsrqppo" path="res://items/weapons/Shortsword.tres" id="3_0jtq2"]
+[ext_resource type="Script" uid="uid://84dploabn4g6" path="res://spells/spell.gd" id="3_ssnea"]
+[ext_resource type="Script" uid="uid://38cib653j0id" path="res://characters/EnemyData.gd" id="4_0jtq2"]
+[ext_resource type="Script" uid="uid://4x8rc21bxsoy" path="res://characters/HitDice.gd" id="4_kyxau"]
+[ext_resource type="Script" uid="uid://ccxeegh34n548" path="res://characters/Stats.gd" id="7_y3mtb"]
+
+[sub_resource type="Resource" id="Resource_dlwes"]
+script = ExtResource("4_kyxau")
+dice_count = 2
+dice_sides = 8
+plus_amount = 4
+metadata/_custom_type_script = "uid://4x8rc21bxsoy"
+
+[sub_resource type="Resource" id="Resource_ne88d"]
+script = ExtResource("7_y3mtb")
+strength = 10
+dexterity = 14
+constitution = 15
+intelligence = 6
+wisdom = 8
+charisma = 5
+metadata/_custom_type_script = "uid://ccxeegh34n548"
+
+[resource]
+script = ExtResource("4_0jtq2")
+name = "Skeleton"
+portrait_path = "res://sprites/enemies/skeleton.jpg"
+stats = SubResource("Resource_ne88d")
+hit_dice = SubResource("Resource_dlwes")
+xp = 50
+equipped_weapons = Array[ExtResource("2_xi0s2")]([ExtResource("3_0jtq2")])
+damage_vulnerabilities = Array[String](["Bludgeoning"])
+damage_immunities = Array[String](["Poison"])
+condition_immunities = Array[String](["Poisoned"])
+senses = Array[String](["Darkvision 60", "Passive Perception 9"])
+attack_hit_sound_path = "res://audio/combat/sword-on-flesh.mp3"
+attack_miss_sound_path = "res://audio/combat/atk-sword-swing.mp3"
+damage_sound_path = "res://audio/combat/sword-on-flesh.mp3"
+death_sound_path = "res://audio/combat/demon-scream.mp3"
+metadata/_custom_type_script = "uid://38cib653j0id"

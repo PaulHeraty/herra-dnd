@@ -25,7 +25,7 @@ func show_spell_sheet() -> void:
 	visible = true
 	spell_menu_is_shown = true
 	spell_menu_shown.emit()
-	#open(PartyManager.party[1].core_data.known_spells)
+	open(PartyManager.party[1].core_data.known_spells)
 	pass
 	
 func hide_spell_sheet() -> void:

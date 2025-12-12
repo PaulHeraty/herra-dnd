@@ -2,11 +2,11 @@ extends Node
 
 signal enemy_selected(enemy)
 
-const ENEMY = preload("res://enemy/Enemy.tscn")
+const ENEMY = preload("res://characters/Enemy.tscn")
 #const ENEMY = preload("res://core/ICombatEntity.tscn")
-const SKELETON_ENEMY: Resource = preload("res://enemy/enemies/Skeleton.tres")
-const SKELETON_ENEMY1: Resource = preload("res://enemy/enemies/Skeleton.tres")
-const SKELETON_ENEMY2: Resource = preload("res://enemy/enemies/Skeleton.tres")
+const SKELETON_ENEMY: Resource = preload("res://characters/enemies/Skeleton.tres")
+const SKELETON_ENEMY1: Resource = preload("res://characters/enemies/Skeleton.tres")
+const SKELETON_ENEMY2: Resource = preload("res://characters/enemies/Skeleton.tres")
 
 var enemy_list: Array[Enemy] = []
 

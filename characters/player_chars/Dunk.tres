@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=9 format=3 uid="uid://cojeeeix21c6e"]
+
+[ext_resource type="Script" uid="uid://84dploabn4g6" path="res://spells/spell.gd" id="1_7gabk"]
+[ext_resource type="Script" uid="uid://buqbd3v8wiknc" path="res://items/Armor.gd" id="1_b2m2b"]
+[ext_resource type="Script" uid="uid://dwl0xsytv4d4v" path="res://items/Weapon.gd" id="2_3105f"]
+[ext_resource type="Script" uid="uid://c4sk7eniu4rge" path="res://characters/CharacterData.gd" id="2_f8bru"]
+[ext_resource type="Resource" uid="uid://dsc45x35ud0qb" path="res://items/armors/ChainMail.tres" id="2_xwboy"]
+[ext_resource type="Script" uid="uid://ccxeegh34n548" path="res://characters/Stats.gd" id="3_f8bru"]
+[ext_resource type="Resource" uid="uid://dpp34tkoxnxee" path="res://items/weapons/Greataxe.tres" id="4_qksq2"]
+
+[sub_resource type="Resource" id="Resource_vt6ge"]
+script = ExtResource("3_f8bru")
+strength = 16
+dexterity = 9
+constitution = 15
+intelligence = 11
+wisdom = 13
+charisma = 14
+metadata/_custom_type_script = "uid://ccxeegh34n548"
+
+[resource]
+script = ExtResource("2_f8bru")
+name = "Dunk"
+portrait_path = "res://sprites/characters/portraits/dunk.jpg"
+background = 2
+max_hp = 12
+stats = SubResource("Resource_vt6ge")
+proficiencies = Array[int]([3, 11])
+equipped_weapons = Array[ExtResource("2_3105f")]([ExtResource("4_qksq2")])
+equipped_armor = Array[ExtResource("1_b2m2b")]([ExtResource("2_xwboy")])
+metadata/_custom_type_script = "uid://c4sk7eniu4rge"

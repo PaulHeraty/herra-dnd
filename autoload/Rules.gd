@@ -24,22 +24,22 @@ func saving_throw_check(st_mod: int, dc: int) -> bool:
 		return true
 	return roll + st_mod >= dc
 
-func attack_roll(p: ICombatEntity, ac: int) -> Dictionary:
+func attack_roll(p: CombatEntity, ac: int) -> Dictionary:
 	var atk_mod: int = 0
 	var critical_hit: bool = false
 	var critical_miss: bool = false
-	var prof_bonus: int = p.core_data.proficiency_bonus
-	var weapons = p.core_data.equipped_weapons
+	var prof_bonus: int = p.proficiency_bonus
+	var weapons = p.equipped_weapons
 	var damage: Dictionary = {}
 	var d: Dice = Dice.new()
 	
 	for w: Weapon in weapons:
 		if w.properties.has("Finesse"):
-			atk_mod = max(p.core_data.stats.strength_mod, p.core_data.stats.dexterity_mod)
+			atk_mod = max(p.stats.strength_mod, p.stats.dexterity_mod)
 		elif w.weapon_type == Weapon.WEAPON_TYPE.SIMPLE_RANGED or w.weapon_type == Weapon.WEAPON_TYPE.MARTIAL_RANGED:
-			atk_mod = p.core_data.stats.dexterity_mod
+			atk_mod = p.stats.dexterity_mod
 		else:
-			atk_mod = p.core_data.stats.strength_mod
+			atk_mod = p.stats.strength_mod
 			
 		var roll = d.d20()
 		GameLog.add_entry("Attack Roll: " + str(roll) + " + atk_mod: " 

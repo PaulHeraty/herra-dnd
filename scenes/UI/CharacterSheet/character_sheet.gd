@@ -33,21 +33,21 @@ func set_character(pc: PlayerCharacter) -> void:
 	update_stats()
 	
 func update_stats() -> void:
-	char_name.text = player_char.name
+	char_name.text = player_char.entity_name
 	set_portrait()
 	char_class.text = get_class_string(player_char.core_data.class_type)
 	char_level.text = str(player_char.core_data.level)
 	background.text = get_background_string(player_char.core_data.background)
 	race.text = get_race_string(player_char.core_data.race) 
-	alignment.text = get_alignment_string(player_char.core_data.alignment)
+	alignment.text = get_alignment_string(player_char.alignment)
 	xp.text = str(player_char.core_data.xp) + "/" + "TBD"
-	ac.text = str(player_char.core_data.ac)
+	ac.text = str(player_char.ac)
 	initiative.text = get_initiative_string(player_char)
-	speed.text = str(player_char.core_data.speed) + " feet"
-	hp.text = str(player_char.core_data.current_hp) + "/" + str(player_char.core_data.max_hp)
+	speed.text = str(player_char.speed) + " feet"
+	hp.text = str(player_char.current_hp) + "/" + str(player_char.max_hp)
 	saving_throws.update_STs(player_char)
 	skills_box.update_skills(player_char)
-	var sts = player_char.core_data.stats
+	var sts = player_char.stats
 	strength.update("Strength", sts.strength_mod, sts.strength)
 	dexterity.update("Dexterity", sts.dexterity_mod, sts.dexterity)
 	constitution.update("Constitution", sts.constitution_mod, sts.constitution)
@@ -65,10 +65,10 @@ func set_portrait() -> void:
 	pass
 
 func get_initiative_string(c: PlayerCharacter) -> String:
-	if c.core_data.saving_throws.dexterity >= 0:
-		return "+" + str(c.core_data.saving_throws.dexterity)
+	if c.saving_throws.dexterity >= 0:
+		return "+" + str(c.saving_throws.dexterity)
 	else:
-		return str(c.core_data.saving_throws.dexterity)
+		return str(c.saving_throws.dexterity)
 	
 func get_class_string(c: Class.ClassType) -> String:
 	match c:

@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="CharacterData" load_steps=9 format=3 uid="uid://1iu4342lf375"]
+
+[ext_resource type="Script" uid="uid://buqbd3v8wiknc" path="res://items/Armor.gd" id="1_dc74p"]
+[ext_resource type="Script" uid="uid://dwl0xsytv4d4v" path="res://items/Weapon.gd" id="2_d617a"]
+[ext_resource type="Resource" uid="uid://3kraw7u1dnem" path="res://items/armors/Leather.tres" id="2_jpljc"]
+[ext_resource type="Script" uid="uid://84dploabn4g6" path="res://spells/spell.gd" id="3_2f4ac"]
+[ext_resource type="Resource" uid="uid://t48e0fsrqppo" path="res://items/weapons/Shortsword.tres" id="4_b3v4q"]
+[ext_resource type="Script" uid="uid://c4sk7eniu4rge" path="res://characters/CharacterData.gd" id="4_jpljc"]
+[ext_resource type="Script" uid="uid://ccxeegh34n548" path="res://characters/Stats.gd" id="7_4xhoi"]
+
+[sub_resource type="Resource" id="Resource_sxwls"]
+script = ExtResource("7_4xhoi")
+strength = 8
+dexterity = 16
+constitution = 12
+intelligence = 13
+wisdom = 10
+charisma = 16
+metadata/_custom_type_script = "uid://ccxeegh34n548"
+
+[resource]
+script = ExtResource("4_jpljc")
+name = "Defty"
+portrait_path = "res://sprites/characters/portraits/defty.jpg"
+class_type = 1
+race = 2
+max_hp = 9
+stats = SubResource("Resource_sxwls")
+proficiencies = Array[int]([0, 8, 12, 15])
+expertise = Array[int]([16])
+equipped_weapons = Array[ExtResource("2_d617a")]([ExtResource("4_b3v4q"), ExtResource("4_b3v4q")])
+equipped_armor = Array[ExtResource("1_dc74p")]([ExtResource("2_jpljc")])
+attack_miss_sound_path = "res://audio/combat/atk-sword-swing.mp3"
+damage_sound_path = "res://audio/combat/sword-on-flesh.mp3"
+death_sound_path = "res://audio/combat/grunt.mp3"
+metadata/_custom_type_script = "uid://c4sk7eniu4rge"

@@ -1,6 +1,6 @@
 class_name Skills extends Node
 
-enum SkillType {
+enum SKILLTYPE {
 	ACROBATICS,
 	ANIMAL_HANDLING,
 	ARCANA,
@@ -41,11 +41,11 @@ var stealth: int = 0
 var survival: int = 0
 
 func set_skills(p: PlayerCharacter) -> void:
-	set_skills_by_stats(p.core_data.stats)
-	update_skills_proficiencies(p.core_data.proficiencies, p.core_data.proficiency_bonus)
-	update_skills_expertise(p.core_data.expertise, p.core_data.proficiency_bonus)
-	update_skills_by_race(p.core_data.race, p.core_data.proficiency_bonus)
-	update_skills_by_background(p.core_data.background, p.core_data.proficiency_bonus)
+	set_skills_by_stats(p.stats)
+	update_skills_proficiencies(p.proficiencies, p.proficiency_bonus)
+	update_skills_expertise(p.core_data.expertise, p.proficiency_bonus)
+	update_skills_by_race(p.core_data.race, p.proficiency_bonus)
+	update_skills_by_background(p.core_data.background, p.proficiency_bonus)
 	pass
 
 func set_skills_by_stats(s: Stats) -> void:
@@ -69,53 +69,53 @@ func set_skills_by_stats(s: Stats) -> void:
 	survival = s.get_ability_modifier(s.wisdom)
 	pass
 	
-func update_skills_proficiencies(proficiencies: Array[Skills.SkillType], pb: int) -> void:
+func update_skills_proficiencies(proficiencies: Array[Skills.SKILLTYPE], pb: int) -> void:
 	for p in proficiencies:
 		update_proficiency(p, pb)
 	pass
 
-func update_skills_expertise(expertises: Array[Skills.SkillType], pb: int) -> void:
+func update_skills_expertise(expertises: Array[Skills.SKILLTYPE], pb: int) -> void:
 	for e in expertises:
 		update_proficiency(e, pb)
 	pass
 
-func update_proficiency(p: Skills.SkillType , pb: int) -> void:
+func update_proficiency(p: Skills.SKILLTYPE , pb: int) -> void:
 	match p:
-		Skills.SkillType.ACROBATICS:
+		Skills.SKILLTYPE.ACROBATICS:
 			acrobatics += pb
-		Skills.SkillType.ANIMAL_HANDLING:
+		Skills.SKILLTYPE.ANIMAL_HANDLING:
 			animal_handling += pb
-		Skills.SkillType.ARCANA:
+		Skills.SKILLTYPE.ARCANA:
 			arcana += pb
-		Skills.SkillType.ATHLETICS:
+		Skills.SKILLTYPE.ATHLETICS:
 			athletics += pb
-		Skills.SkillType.DECEPTION:
+		Skills.SKILLTYPE.DECEPTION:
 			deception += pb
-		Skills.SkillType.HISTORY:
+		Skills.SKILLTYPE.HISTORY:
 			history += pb
-		Skills.SkillType.INSIGHT:
+		Skills.SKILLTYPE.INSIGHT:
 			insight += pb
-		Skills.SkillType.INTIMIDATION:
+		Skills.SKILLTYPE.INTIMIDATION:
 			intimidation += pb
-		Skills.SkillType.INVESTIGATION:
+		Skills.SKILLTYPE.INVESTIGATION:
 			investigation += pb
-		Skills.SkillType.MEDICINE:
+		Skills.SKILLTYPE.MEDICINE:
 			medicine += pb
-		Skills.SkillType.NATURE:
+		Skills.SKILLTYPE.NATURE:
 			nature += pb
-		Skills.SkillType.PERCEPTION:
+		Skills.SKILLTYPE.PERCEPTION:
 			perception += pb
-		Skills.SkillType.PERFORMANCE:
+		Skills.SKILLTYPE.PERFORMANCE:
 			performance += pb
-		Skills.SkillType.PERSUASION:
+		Skills.SKILLTYPE.PERSUASION:
 			persuasion += pb
-		Skills.SkillType.RELIGION:
+		Skills.SKILLTYPE.RELIGION:
 			religion += pb
-		Skills.SkillType.SLEIGHT_OF_HAND:
+		Skills.SKILLTYPE.SLEIGHT_OF_HAND:
 			sleight_of_hand += pb
-		Skills.SkillType.STEALTH:
+		Skills.SKILLTYPE.STEALTH:
 			stealth += pb
-		Skills.SkillType.SURVIVAL:
+		Skills.SKILLTYPE.SURVIVAL:
 			survival += pb
 	pass
 
