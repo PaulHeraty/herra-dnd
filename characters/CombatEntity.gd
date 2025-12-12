@@ -35,3 +35,4 @@ func attack_hit() -> void: pass
 func attack_miss() -> void: pass
 func set_ac() -> void: pass
 func learn_spell(_spell: Spell) -> void: pass
+func cast_spell(_spell: Spell, _target: CombatEntity) -> void: pass

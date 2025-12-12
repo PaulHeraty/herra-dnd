@@ -36,18 +36,27 @@ func turn_loop() -> void:
 			continue
 			
 		GameLog.add_entry("\n" + actor.entity_name + "'s turn: ")
+		
 		# Choose action (attack, cast, etc)
 		if actor.entity_name == "Healz":
 			SpellMenu.open(actor.known_spells)
 			var chosen_spell = await SpellMenu.spell_selected
 			GameLog.add_entry("Selected spell: " + chosen_spell.name + "\n")
-			
-		# Select target
-		await select_target(actor)
-		GameLog.add_entry(actor.entity_name + " is attacking " + target.entity_name + "\n")
-		if actor.entity_type == actor.ENTITY_TYPE.ENEMY:
-			await GameLog.advance # wait for keypress
-		await make_attack(actor)
+			await chose_player_spell_target()
+			await actor.cast_spell(chosen_spell, target)			
+		elif actor.entity_name == "Merlin":
+			SpellMenu.open(actor.known_spells)
+			var chosen_spell = await SpellMenu.spell_selected
+			GameLog.add_entry("Selected spell: " + chosen_spell.name + "\n")
+			await select_target_for_player_turn()
+			await actor.cast_spell(chosen_spell, target)
+		else:
+			# Select target
+			await select_target(actor)
+			GameLog.add_entry(actor.entity_name + " is attacking " + target.entity_name + "\n")
+			if actor.entity_type == actor.ENTITY_TYPE.ENEMY:
+				await GameLog.advance # wait for keypress
+			await make_attack(actor)
 		
 		await get_tree().create_timer(0.5).timeout
 	GameLog.add_entry("End of turn...\n\n")
@@ -91,6 +100,13 @@ func select_target_for_player_turn():
 	var signal_args = await EnemyManager.enemy_selected
 	target = signal_args
 
+
+func chose_player_spell_target():
+	GameLog.add_entry("[color=orange]Select a player target.\n[/color]")
+	var signal_args = await PartyManager.player_selected
+	GameLog.add_entry("[color=orange]Selected player: [/color]" + signal_args.entity_name + "\n")
+	target = signal_args
+	
 func get_player_target() -> void:
 	var remaining_players: Array[CombatEntity] = []
 	for actor in turn_order:

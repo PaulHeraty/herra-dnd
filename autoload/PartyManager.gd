@@ -1,5 +1,7 @@
 extends Node
 
+signal player_selected(player)
+
 const PLAYER_CHARACTER = preload("res://characters/PlayerCharacter.tscn")
 const PLAYER1: Resource = preload("res://characters/player_chars/Dunk.tres")
 const PLAYER2: Resource = preload("res://characters/player_chars/Healz.tres")
@@ -24,6 +26,7 @@ func add_player_instance(toon: Resource) -> void:
 	var player = PLAYER_CHARACTER.instantiate()
 	player.core_data = toon
 	get_tree().get_root().get_node("/root/Main/Party").add_child(player)
+	player.selected.connect(_on_player_selected)
 	party.append(player)
 	pass
 
@@ -34,4 +37,8 @@ func setup_party() -> void:
 		var pb = p.proficiency_bonus
 		p.saving_throws.set_saving_throws(c_type, sts, pb)
 		p.skills.set_skills(p)
+	pass
+
+func _on_player_selected(player:PlayerCharacter) -> void:
+	player_selected.emit(player)
 	pass

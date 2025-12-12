@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="MagicMissile" load_steps=2 format=3 uid="uid://cpotsp68y78c4"]
+
+[ext_resource type="Script" uid="uid://utlcspsd0d5d" path="res://spells/magic_missile.gd" id="1_sh17a"]
+
+[resource]
+script = ExtResource("1_sh17a")
+metadata/_custom_type_script = "uid://utlcspsd0d5d"

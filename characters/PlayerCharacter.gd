@@ -1,15 +1,19 @@
 class_name PlayerCharacter extends CombatEntity
 
+signal selected(player)
+
 @onready var portrait: TextureRect = $Portrait
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var button: Button = $Portrait/Button
 
 var core_data: CharacterData
 var is_alive: bool = true
 
 func _ready() -> void:
 	copy_core_stats()
+	button.pressed.connect(_on_button_pressed)
 	speed = get_race_speed(core_data.race)
 	current_hp = max_hp
 	health_bar.max_value = max_hp
@@ -32,7 +36,10 @@ func _ready() -> void:
 	damage_audio = load(core_data.damage_sound_path)
 	death_audio = load(core_data.death_sound_path)
 	pass
-
+	
+func _on_button_pressed() -> void:
+	selected.emit(self)
+		
 func copy_core_stats() -> void:
 	entity_name = core_data.name
 	stats = core_data.stats
@@ -76,6 +83,8 @@ func take_damage(dmg_type: DamageComponent.DAMAGE_TYPE, dmg_amount: int) -> void
 func heal(heal_amount: int) -> void:
 	GameLog.add_entry(entity_name + " is healed for " + str(heal_amount) + "\n")
 	current_hp += heal_amount
+	if current_hp > max_hp:
+		current_hp = max_hp
 	GameLog.add_entry(entity_name + " has " + str(current_hp) + " hp left\n")
 	pass
 	
@@ -124,4 +133,11 @@ func get_race_speed(race: Race.RaceType) -> int:
 
 func learn_spell(spell: Spell) -> void:
 	known_spells.append(spell)
+	pass
+	
+func cast_spell(spell: Spell, target: CombatEntity) -> void:
+	audio_stream_player.stream = spell.spell_sound
+	audio_stream_player.play()
+	await audio_stream_player.finished
+	spell.cast(self, target)
 	pass

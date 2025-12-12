@@ -77,8 +77,8 @@ func take_damage(dmg_type: DamageComponent.DAMAGE_TYPE, dmg_amount: int) -> void
 
 func heal(heal_amount: int) -> void:
 	GameLog.add_entry(entity_name + " is healed for " + str(heal_amount) + "\n")
-	core_data.current_hp += heal_amount
-	GameLog.add_entry(entity_name + " has " + str(core_data.current_hp) + " hp left\n")
+	current_hp += heal_amount
+	GameLog.add_entry(entity_name + " has " + str(current_hp) + " hp left\n")
 	pass
 	
 func enemy_dead() -> void:
