@@ -42,13 +42,13 @@ func turn_loop() -> void:
 			SpellMenu.open(actor.known_spells)
 			var chosen_spell = await SpellMenu.spell_selected
 			GameLog.add_entry("Selected spell: " + chosen_spell.name + "\n")
-			await chose_player_spell_target()
+			await get_spell_target(chosen_spell)
 			await actor.cast_spell(chosen_spell, target)			
 		elif actor.entity_name == "Merlin":
 			SpellMenu.open(actor.known_spells)
 			var chosen_spell = await SpellMenu.spell_selected
 			GameLog.add_entry("Selected spell: " + chosen_spell.name + "\n")
-			await select_target_for_player_turn()
+			await get_spell_target(chosen_spell)
 			await actor.cast_spell(chosen_spell, target)
 		else:
 			# Select target
@@ -61,6 +61,13 @@ func turn_loop() -> void:
 		await get_tree().create_timer(0.5).timeout
 	GameLog.add_entry("End of turn...\n\n")
 	pass 
+
+func get_spell_target(spell: Spell) -> void:
+	if spell.spell_type == Spell.SPELLTYPE.DEFENSIVE:
+		await chose_player_spell_target()
+	elif spell.spell_type == Spell.SPELLTYPE.OFFENSIVE:
+		await select_target_for_player_turn()
+	pass
 
 func check_party_alive() -> void:
 	for p in PartyManager.party:
@@ -147,9 +154,9 @@ func make_attack(attacker: CombatEntity) -> void:
 	# attack roll
 	var ac = 0
 	if target.entity_type == target.ENTITY_TYPE.ENEMY:
-		ac = target.ac
+		ac = target.get_ac()
 	else:
-		ac = target.ac
+		ac = target.get_ac()
 	var dmg: Dictionary = Rules.attack_roll(attacker, ac)
 	
 	# death checks

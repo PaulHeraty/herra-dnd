@@ -7,6 +7,7 @@ class_name EnemyData extends Resource
 
 @export var hit_dice: HitDice
 @export var xp: int = 0
+@export var ac: int = 0
 
 @export_category("Skills")
 @export var proficiency_bonus: int = 2

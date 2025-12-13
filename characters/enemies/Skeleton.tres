@@ -32,6 +32,7 @@ portrait_path = "res://sprites/enemies/skeleton.jpg"
 stats = SubResource("Resource_ne88d")
 hit_dice = SubResource("Resource_dlwes")
 xp = 50
+ac = 13
 equipped_weapons = Array[ExtResource("2_xi0s2")]([ExtResource("3_0jtq2")])
 damage_vulnerabilities = Array[String](["Bludgeoning"])
 damage_immunities = Array[String](["Poison"])

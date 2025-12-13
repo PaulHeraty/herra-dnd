@@ -41,7 +41,7 @@ func update_stats() -> void:
 	race.text = get_race_string(player_char.core_data.race) 
 	alignment.text = get_alignment_string(player_char.alignment)
 	xp.text = str(player_char.core_data.xp) + "/" + "TBD"
-	ac.text = str(player_char.ac)
+	ac.text = str(player_char.get_ac())
 	initiative.text = get_initiative_string(player_char)
 	speed.text = str(player_char.speed) + " feet"
 	hp.text = str(player_char.current_hp) + "/" + str(player_char.max_hp)

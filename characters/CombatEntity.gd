@@ -17,6 +17,7 @@ var speed: int = 30
 var alignment: Alignment.AlignmentType = Alignment.AlignmentType.TRUE_NEUTRAL
 var current_hp: int = 0
 var ac: int = 0
+var modifiers: Array[StatModifier] = []
 
 # Copied stats
 var stats: Stats
@@ -33,6 +34,14 @@ func take_damage(_dmg_type: DamageComponent.DAMAGE_TYPE, _dmg_amount: int) -> vo
 func heal(_heal_amount: int) -> void: pass
 func attack_hit() -> void: pass
 func attack_miss() -> void: pass
-func set_ac() -> void: pass
+func get_ac() -> int: return 0
 func learn_spell(_spell: Spell) -> void: pass
 func cast_spell(_spell: Spell, _target: CombatEntity) -> void: pass
+
+func add_modifier(mod: StatModifier) -> void:
+	modifiers.append(mod)
+
+func remove_modifiers_from_source(source: String) -> void:
+	modifiers = modifiers.filter(func(m): return m.source != source)
+	pass
+	

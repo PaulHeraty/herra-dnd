@@ -42,3 +42,10 @@ func setup_party() -> void:
 func _on_player_selected(player:PlayerCharacter) -> void:
 	player_selected.emit(player)
 	pass
+
+func award_xp(xp: int) -> void:
+	var num_players: int = PartyManager.party.size()
+	var individual_xp: int = int(xp / num_players)
+	GameLog.add_entry("[color=yellow]Players get " + str(individual_xp) + " xp each![/color]\n")
+	for p in PartyManager.party:
+		p.award_xp(individual_xp)

@@ -25,7 +25,7 @@ func _ready() -> void:
 		portrait.custom_minimum_size = Vector2(128, 128)
 		portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		portrait.expand = true
-	set_ac()
+	ac = get_ac()
 	if equipped_weapons.size() > 0:
 		if equipped_weapons[0].weapon_type == Weapon.WEAPON_TYPE.MARTIAL_RANGED:
 			attack_hit_audio = load("res://audio/combat/archer-shot.mp3")
@@ -97,7 +97,7 @@ func player_dead() -> void:
 	portrait.modulate = Color("ff0000", 0.5)
 	pass
 	
-func set_ac() -> void:
+func get_ac() -> int:
 	var temp_ac = 0
 	# First add armor AC and shield
 	if equipped_armor.size() > 0:
@@ -116,7 +116,12 @@ func set_ac() -> void:
 	else:
 		temp_ac += stats.dexterity_mod
 	
-	ac = temp_ac
+	# Now add modifiers if any
+	for mod in modifiers:
+		if mod.stat == "ac":
+			temp_ac += mod.value
+			
+	return temp_ac
 
 func get_race_speed(race: Race.RaceType) -> int:
 	match race:
@@ -141,3 +146,6 @@ func cast_spell(spell: Spell, target: CombatEntity) -> void:
 	await audio_stream_player.finished
 	spell.cast(self, target)
 	pass
+
+func award_xp(xp: int) -> void:
+	core_data.xp += xp

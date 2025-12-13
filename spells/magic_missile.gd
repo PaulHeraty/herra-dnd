@@ -2,6 +2,7 @@ class_name MagicMissile extends Spell
 
 func _init() -> void:
 	name = "Magic Missile"
+	spell_type = SPELLTYPE.OFFENSIVE
 	level = 1
 	spell_sound = preload("res://audio/spells/magic-missiles-wizard-spell-missiles-magic-spookymodem.mp3")
 	pass

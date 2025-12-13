@@ -1,6 +1,9 @@
 class_name Spell extends Resource
 
+enum SPELLTYPE {OFFENSIVE, DEFENSIVE, SUMMON}
+
 var name: String
+var spell_type: SPELLTYPE
 var level: int
 var spell_sound: AudioStream
 

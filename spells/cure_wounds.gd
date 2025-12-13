@@ -2,6 +2,7 @@ class_name CureWounds extends Spell
 
 func _init() -> void:
 	name = "Cure Wounds"
+	spell_type = SPELLTYPE.DEFENSIVE
 	level = 1
 	spell_sound = preload("res://audio/spells/heal-char.mp3")
 	pass

@@ -22,6 +22,7 @@ func _ready() -> void:
 	entity_type = ENTITY_TYPE.ENEMY
 	health_bar.max_value = max_hp
 	health_bar.value = current_hp
+	ac = core_data.ac
 	if core_data and core_data.portrait_path != "":
 		portrait.texture = load(core_data.portrait_path)
 		portrait.custom_minimum_size = Vector2(128, 128)
@@ -90,6 +91,7 @@ func enemy_dead() -> void:
 	portrait.modulate = Color("ff0000", 0.5)
 	var i: int = EnemyManager.enemy_list.find(self)
 	EnemyManager.enemy_list.remove_at(i)
+	PartyManager.award_xp(core_data.xp)
 	queue_free()
 	pass
 
@@ -109,3 +111,13 @@ func calculate_hp(hit_dice: HitDice) -> int:
 	var d: Dice = Dice.new()
 	var hps = d.roll(hit_dice.dice_count, hit_dice.dice_sides) + hit_dice.plus_amount
 	return hps
+
+func get_ac() -> int:
+	var temp_ac = ac
+	
+	# Now add modifiers if any
+	for mod in modifiers:
+		if mod.stat == "ac":
+			temp_ac += mod.value
+	
+	return temp_ac

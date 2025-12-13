@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="MageArmor" load_steps=2 format=3 uid="uid://p3yssl0j17km"]
+
+[ext_resource type="Script" uid="uid://ceagcngra4b1l" path="res://spells/mage_armor.gd" id="1_4jhop"]
+
+[resource]
+script = ExtResource("1_4jhop")
+metadata/_custom_type_script = "uid://ceagcngra4b1l"

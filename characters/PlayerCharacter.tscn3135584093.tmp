@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://dxggku72jhjdu"]
+
+[ext_resource type="Script" uid="uid://k7n3ojid4vgj" path="res://characters/PlayerCharacter.gd" id="1_i4wip"]
+[ext_resource type="Texture2D" uid="uid://bte6wusq7ycf4" path="res://sprites/characters/portraits/defty.jpg" id="2_5glxx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i4wip"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5glxx"]
+bg_color = Color(1, 0.16007765, 0, 1)
+
+[sub_resource type="Animation" id="Animation_5glxx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Portrait:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_i4wip"]
+resource_name = "hit"
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Portrait:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 0.425), Color(1, 1, 1, 1), Color(1, 0, 0, 0.425), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_grsgm"]
+_data = {
+&"RESET": SubResource("Animation_5glxx"),
+&"hit": SubResource("Animation_i4wip")
+}
+
+[node name="PlayerCharacter" type="Node2D"]
+script = ExtResource("1_i4wip")
+
+[node name="Portrait" type="TextureRect" parent="."]
+offset_right = 128.0
+offset_bottom = 128.0
+texture = ExtResource("2_5glxx")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="Portrait"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = 21.0
+offset_top = 128.0
+offset_right = 106.0
+offset_bottom = 151.0
+theme_override_styles/background = SubResource("StyleBoxFlat_i4wip")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5glxx")
+value = 50.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_grsgm")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+max_polyphony = 4
