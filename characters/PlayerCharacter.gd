@@ -86,6 +86,8 @@ func heal(heal_amount: int) -> void:
 	if current_hp > max_hp:
 		current_hp = max_hp
 	GameLog.add_entry(entity_name + " has " + str(current_hp) + " hp left\n")
+	if current_hp > 0:
+		portrait.modulate = Color("ffffff", 1.0)
 	pass
 	
 func player_dead() -> void:

@@ -65,10 +65,10 @@ func set_portrait() -> void:
 	pass
 
 func get_initiative_string(c: PlayerCharacter) -> String:
-	if c.saving_throws.dexterity >= 0:
-		return "+" + str(c.saving_throws.dexterity)
+	if c.saving_throws.dexterity_modifier >= 0:
+		return "+" + str(c.saving_throws.dexterity_modifier)
 	else:
-		return str(c.saving_throws.dexterity)
+		return str(c.saving_throws.dexterity_modifier)
 	
 func get_class_string(c: Class.ClassType) -> String:
 	match c:

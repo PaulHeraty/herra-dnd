@@ -1,0 +1,48 @@
+[gd_scene load_steps=3 format=3 uid="uid://be3g0j2cydk7t"]
+
+[ext_resource type="Script" uid="uid://cvg4cnnwy1c07" path="res://scenes/UI/SpellSheet/spell_book.gd" id="1_3lvro"]
+[ext_resource type="PackedScene" uid="uid://dbushinwbpj5x" path="res://scenes/UI/SpellSheet/SpellSheet.tscn" id="2_57fh2"]
+
+[node name="SpellBook" type="CanvasLayer"]
+script = ExtResource("1_3lvro")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 229.0
+offset_top = 163.0
+offset_right = 912.0
+offset_bottom = 443.0
+
+[node name="TabContainer" type="TabContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -7.0
+offset_right = -28.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+tab_alignment = 1
+current_tab = 3
+
+[node name="Cantrips" parent="Control/TabContainer" instance=ExtResource("2_57fh2")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Level1" parent="Control/TabContainer" instance=ExtResource("2_57fh2")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Level2" parent="Control/TabContainer" instance=ExtResource("2_57fh2")]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Level3" parent="Control/TabContainer" instance=ExtResource("2_57fh2")]
+layout_mode = 2
+metadata/_tab_index = 3

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="CharacterData" load_steps=11 format=3 uid="uid://h0ggs3isqihr"]
+[gd_resource type="Resource" script_class="CharacterData" load_steps=12 format=3 uid="uid://h0ggs3isqihr"]
 
 [ext_resource type="Script" uid="uid://buqbd3v8wiknc" path="res://items/Armor.gd" id="1_bbb4o"]
 [ext_resource type="Resource" uid="uid://dsc45x35ud0qb" path="res://items/armors/ChainMail.tres" id="2_4sl2m"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://c4sk7eniu4rge" path="res://characters/CharacterData.gd" id="4_jb6fx"]
 [ext_resource type="Resource" uid="uid://dry7rce0k73uo" path="res://items/weapons/Warhammer.tres" id="5_sqisq"]
 [ext_resource type="Resource" uid="uid://bosgu6h3cokso" path="res://spells/CureWounds.tres" id="7_8756t"]
+[ext_resource type="Resource" uid="uid://cwcfvo8begj7j" path="res://spells/SacredFlame.tres" id="8_sqisq"]
 [ext_resource type="Script" uid="uid://ccxeegh34n548" path="res://characters/Stats.gd" id="8_vqpbc"]
 
 [sub_resource type="Resource" id="Resource_jqqy8"]
@@ -32,7 +33,7 @@ stats = SubResource("Resource_jqqy8")
 proficiencies = Array[int]([9, 14])
 equipped_weapons = Array[ExtResource("2_cjphi")]([ExtResource("5_sqisq")])
 equipped_armor = Array[ExtResource("1_bbb4o")]([ExtResource("2_4sl2m"), ExtResource("3_8756t")])
-known_spells = Array[ExtResource("3_f05uj")]([ExtResource("7_8756t")])
+known_spells = Array[ExtResource("3_f05uj")]([ExtResource("7_8756t"), ExtResource("8_sqisq")])
 attack_miss_sound_path = "res://audio/combat/atk-sword-swing.mp3"
 damage_sound_path = "res://audio/combat/sword-on-flesh.mp3"
 death_sound_path = "res://audio/combat/grunt.mp3"

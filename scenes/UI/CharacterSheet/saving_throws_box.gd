@@ -8,12 +8,12 @@ class_name SavingThrowsBox extends VBoxContainer
 @onready var charisma_value: Label = $Charisma/CharismaValue
 
 func update_STs(player_char: PlayerCharacter) -> void:
-	strength_value.text = get_ST_string(player_char.saving_throws.strength)
-	dexterity_value.text = get_ST_string(player_char.saving_throws.dexterity)
-	constitution_value.text = get_ST_string(player_char.saving_throws.constitution)
-	intelligence_value.text = get_ST_string(player_char.saving_throws.intelligence)
-	wisdom_value.text = get_ST_string(player_char.saving_throws.wisdom)
-	charisma_value.text = get_ST_string(player_char.saving_throws.charisma)
+	strength_value.text = get_ST_string(player_char.saving_throws.strength_modifier)
+	dexterity_value.text = get_ST_string(player_char.saving_throws.dexterity_modifier)
+	constitution_value.text = get_ST_string(player_char.saving_throws.constitution_modifier)
+	intelligence_value.text = get_ST_string(player_char.saving_throws.intelligence_modifier)
+	wisdom_value.text = get_ST_string(player_char.saving_throws.wisdom_modifier)
+	charisma_value.text = get_ST_string(player_char.saving_throws.charisma_modifier)
 	pass
 
 func get_ST_string(value: int) -> String:

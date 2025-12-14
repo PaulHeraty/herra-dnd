@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Weapon" load_steps=4 format=3 uid="uid://dpp34tkoxnxee"]
 
-[ext_resource type="Script" uid="uid://kwg1tvwjnd30" path="res://items/DamageComponent.gd" id="1_fjr4r"]
+[ext_resource type="Script" uid="uid://kwg1tvwjnd30" path="res://core/DamageComponent.gd" id="1_fjr4r"]
 [ext_resource type="Script" uid="uid://dwl0xsytv4d4v" path="res://items/Weapon.gd" id="2_105n3"]
 
 [sub_resource type="Resource" id="Resource_fjr4r"]

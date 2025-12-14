@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bm5eykaovvlhe"]
 
-[ext_resource type="Script" uid="uid://b0vmw1016dn5" path="res://scenes/UI/party_sheet.gd" id="1_yhv5m"]
+[ext_resource type="Script" uid="uid://b0vmw1016dn5" path="res://scenes/UI/CharacterSheet/party_sheet.gd" id="1_yhv5m"]
 [ext_resource type="PackedScene" uid="uid://beypv5k06nalq" path="res://scenes/UI/CharacterSheet/CharacterSheet.tscn" id="2_0sl4c"]
 
 [node name="PartySheet" type="CanvasLayer"]

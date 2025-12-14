@@ -1,7 +1,7 @@
 class_name Main extends Node
 
-@onready var panel: Panel = $CanvasLayer/Control/Panel
-@onready var game_log: RichTextLabel = $CanvasLayer/Control/Panel/ScrollContainer/GameLog
+@onready var panel: Panel = $GameLog/Control/Panel
+@onready var game_log: RichTextLabel = $GameLog/Control/Panel/ScrollContainer/GameLog
 
 func _init() -> void:
 	pass

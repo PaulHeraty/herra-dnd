@@ -1,11 +1,20 @@
 extends Node
 
 var turn_order: Array[CombatEntity] = []
+var current_actor: CombatEntity = null
 var target: CombatEntity = null
 var players_alive: bool
 var enemies_alive: bool
 var combat_over: bool = false
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("show_spell_book"):
+		if SpellBook.is_shown == false:
+			SpellBook.show_spell_book(current_actor)
+		else:
+			SpellBook.hide_spell_book()
+		get_viewport().set_input_as_handled()
+		
 func enter_combat() -> void:
 	players_alive = true
 	enemies_alive = true
@@ -24,6 +33,7 @@ func turn_loop() -> void:
 	determine_initiative_order()
 	
 	for actor in turn_order:
+		current_actor = actor
 		check_party_alive()
 		check_enemies_alive()
 		
@@ -39,14 +49,14 @@ func turn_loop() -> void:
 		
 		# Choose action (attack, cast, etc)
 		if actor.entity_name == "Healz":
-			SpellMenu.open(actor.known_spells)
-			var chosen_spell = await SpellMenu.spell_selected
+			SpellBook.show_spell_book(actor)
+			var chosen_spell = await SpellBook.spell_selected
 			GameLog.add_entry("Selected spell: " + chosen_spell.name + "\n")
 			await get_spell_target(chosen_spell)
 			await actor.cast_spell(chosen_spell, target)			
 		elif actor.entity_name == "Merlin":
-			SpellMenu.open(actor.known_spells)
-			var chosen_spell = await SpellMenu.spell_selected
+			SpellBook.show_spell_book(actor)
+			var chosen_spell = await SpellBook.spell_selected
 			GameLog.add_entry("Selected spell: " + chosen_spell.name + "\n")
 			await get_spell_target(chosen_spell)
 			await actor.cast_spell(chosen_spell, target)
