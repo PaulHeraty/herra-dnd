@@ -1,11 +1,20 @@
 extends Node
 
+signal player_action_chosen
+
 var turn_order: Array[CombatEntity] = []
-var current_actor: CombatEntity = null
 var target: CombatEntity = null
+var current_actor: CombatEntity = null
 var players_alive: bool
 var enemies_alive: bool
 var combat_over: bool = false
+var chosen_spell: Spell = null
+
+func _ready() -> void:
+	SpellBook.spell_selected.connect(_on_spell_selected)
+	SpellBook.spellbook_cancelled.connect(_on_spell_cancelled)
+	EnemyManager.enemy_selected.connect(_on_enemy_selected)
+	pass
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("show_spell_book"):
@@ -14,6 +23,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			SpellBook.hide_spell_book()
 		get_viewport().set_input_as_handled()
+	pass
 		
 func enter_combat() -> void:
 	players_alive = true
@@ -33,7 +43,9 @@ func turn_loop() -> void:
 	determine_initiative_order()
 	
 	for actor in turn_order:
+		target = null
 		current_actor = actor
+		chosen_spell = null
 		check_party_alive()
 		check_enemies_alive()
 		
@@ -47,30 +59,43 @@ func turn_loop() -> void:
 			
 		GameLog.add_entry("\n" + actor.entity_name + "'s turn: ")
 		
-		# Choose action (attack, cast, etc)
-		if actor.entity_name == "Healz":
-			SpellBook.show_spell_book(actor)
-			var chosen_spell = await SpellBook.spell_selected
-			GameLog.add_entry("Selected spell: " + chosen_spell.name + "\n")
-			await get_spell_target(chosen_spell)
-			await actor.cast_spell(chosen_spell, target)			
-		elif actor.entity_name == "Merlin":
-			SpellBook.show_spell_book(actor)
-			var chosen_spell = await SpellBook.spell_selected
-			GameLog.add_entry("Selected spell: " + chosen_spell.name + "\n")
-			await get_spell_target(chosen_spell)
-			await actor.cast_spell(chosen_spell, target)
+		if actor.entity_type == actor.ENTITY_TYPE.PLAYER:
+			await handle_player_turn(actor)
 		else:
-			# Select target
-			await select_target(actor)
-			GameLog.add_entry(actor.entity_name + " is attacking " + target.entity_name + "\n")
-			if actor.entity_type == actor.ENTITY_TYPE.ENEMY:
-				await GameLog.advance # wait for keypress
-			await make_attack(actor)
+			await perform_ai_action(actor)
 		
 		await get_tree().create_timer(0.5).timeout
 	GameLog.add_entry("End of turn...\n\n")
 	pass 
+
+func handle_player_turn(actor: CombatEntity):
+	GameLog.add_entry("Awaiting target selection or spell choice...\n")
+	await player_action_chosen
+		
+	if chosen_spell:
+		GameLog.add_entry("Selected spell: " + chosen_spell.name + "\n")
+		await get_spell_target(chosen_spell)
+		await actor.cast_spell(chosen_spell, target)
+	elif target:
+		await handle_melee_attack(actor)
+	else:
+		GameLog.add_entry("No action selected.\n")
+	# Add other actions here
+	pass
+
+func handle_melee_attack(actor: CombatEntity):
+	if actor.entity_type == actor.ENTITY_TYPE.ENEMY:
+		get_random_player_target()
+	#await select_target(actor)
+	GameLog.add_entry(actor.entity_name + " is attacking " + target.entity_name + "\n")
+	await make_attack(actor)
+	pass
+
+func perform_ai_action(actor: CombatEntity):
+	# Right now it just performs a melee attack on a random player
+	await GameLog.advance # wait for keypress
+	handle_melee_attack(actor)
+	pass
 
 func get_spell_target(spell: Spell) -> void:
 	if spell.spell_type == Spell.SPELLTYPE.DEFENSIVE:
@@ -97,34 +122,22 @@ func check_enemies_alive() -> void:
 		combat_over = true
 	pass
 
-func select_target(actor: CombatEntity) -> void:
-	if actor.entity_type == actor.ENTITY_TYPE.PLAYER:
-		await select_target_for_player_turn()
-	else:
-		get_player_target()
-
-#func get_first_enemy() -> ICombatEntity:
-	#var _remaining_enemies: Array[ICombatEntity] = []
-	#for actor in turn_order:
-		#if actor.entity_type == actor.ENTITY_TYPE.ENEMY and actor.is_alive:
-			#return actor
-	#return null
-
 func select_target_for_player_turn():
 	if enemies_alive == false:
 		return
 	GameLog.add_entry("[color=orange]Select a target.\n[/color]")
 	var signal_args = await EnemyManager.enemy_selected
 	target = signal_args
-
+	pass
 
 func chose_player_spell_target():
 	GameLog.add_entry("[color=orange]Select a player target.\n[/color]")
 	var signal_args = await PartyManager.player_selected
 	GameLog.add_entry("[color=orange]Selected player: [/color]" + signal_args.entity_name + "\n")
 	target = signal_args
+	pass
 	
-func get_player_target() -> void:
+func get_random_player_target() -> void:
 	var remaining_players: Array[CombatEntity] = []
 	for actor in turn_order:
 		if actor == null:
@@ -133,6 +146,7 @@ func get_player_target() -> void:
 			remaining_players.append(actor)
 	var target_index = randi_range(0, remaining_players.size()-1)
 	target = remaining_players[target_index]
+	pass
 	
 func determine_initiative_order() -> void:
 	# make a DEX roll (inc dex mod) per mob/PC
@@ -159,6 +173,7 @@ func _print_turn_order():
 	for actor in turn_order:
 		GameLog.add_entry(actor.entity_name + " => " + str(actor.initiative) + ", ")
 	GameLog.add_entry("\n")
+	pass
 	
 func make_attack(attacker: CombatEntity) -> void:
 	# attack roll
@@ -175,4 +190,18 @@ func make_attack(attacker: CombatEntity) -> void:
 		var dmg_amount: int = dmg[key]
 		# Need await here to ensure that enemy is correctly killed as needed
 		await target.take_damage(dmg_type, dmg_amount)
+	pass
+
+func _on_spell_selected(spell: Spell) -> void:
+	chosen_spell = spell
+	player_action_chosen.emit()
+	pass
+	
+func _on_enemy_selected(selected_enemy: CombatEntity) -> void:
+	target = selected_enemy
+	player_action_chosen.emit()
+	pass
+
+func _on_spell_cancelled() -> void:
+	chosen_spell = null
 	pass

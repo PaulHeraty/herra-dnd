@@ -146,7 +146,7 @@ func cast_spell(spell: Spell, target: CombatEntity) -> void:
 	audio_stream_player.stream = spell.spell_sound
 	audio_stream_player.play()
 	await audio_stream_player.finished
-	spell.cast(self, target)
+	await spell.cast(self, target)
 	pass
 
 func award_xp(xp: int) -> void:
