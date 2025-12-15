@@ -23,6 +23,7 @@ func _ready() -> void:
 	health_bar.max_value = max_hp
 	health_bar.value = current_hp
 	ac = core_data.ac
+	saving_throws.set_saving_throws(Class.ClassType.ENEMY, stats, proficiency_bonus)
 	if core_data and core_data.portrait_path != "":
 		portrait.texture = load(core_data.portrait_path)
 		portrait.custom_minimum_size = Vector2(128, 128)

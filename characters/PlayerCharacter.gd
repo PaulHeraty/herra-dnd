@@ -20,6 +20,8 @@ func _ready() -> void:
 	health_bar.value = current_hp
 	entity_name = core_data.name
 	entity_type = ENTITY_TYPE.PLAYER
+	saving_throws.set_saving_throws(core_data.class_type, stats, proficiency_bonus)
+	skills.set_skills(self)
 	if core_data and core_data.portrait_path != "":
 		portrait.texture = load(core_data.portrait_path)
 		portrait.custom_minimum_size = Vector2(128, 128)

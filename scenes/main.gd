@@ -10,7 +10,6 @@ func _ready() -> void:
 	GameLog.register_log_ui(game_log)
 	GameLog.add_entry("Game initialized.\n")
 	
-	PartyManager.setup_party()
 	EnemyManager.add_enemies()
 	draw_monsters()
 	draw_players()

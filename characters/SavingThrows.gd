@@ -32,4 +32,6 @@ func set_saving_throws( cl: Class.ClassType, sts: Stats, pb: int) -> void:
 			wisdom_modifier += pb
 			charisma_modifier += pb
 			pass
+		Class.ClassType.ENEMY:
+			pass
 	pass

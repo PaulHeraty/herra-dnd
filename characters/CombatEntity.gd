@@ -40,6 +40,13 @@ func cast_spell(_spell: Spell, _target: CombatEntity) -> void: pass
 
 func add_modifier(mod: StatModifier) -> void:
 	modifiers.append(mod)
+	
+func has_modifier(mod: StatModifier) -> bool:
+	for m in modifiers:
+		if m.source == mod.source:
+			return true
+	return false
+		 
 
 func remove_modifiers_from_source(source: String) -> void:
 	modifiers = modifiers.filter(func(m): return m.source != source)

@@ -17,7 +17,7 @@ func _init() -> void:
 	"""
 	pass
 	
-func cast(_caster: CombatEntity, target: CombatEntity):
+func cast(_caster: CombatEntity, target: CombatEntity) -> void:
 	GameLog.add_entry("Casting mage armor on " + target.entity_name + "\n")
 	if target.equipped_armor.size() > 0:
 		GameLog.add_entry("Target is already wearing armor so spell has no effect!\n")
@@ -26,4 +26,8 @@ func cast(_caster: CombatEntity, target: CombatEntity):
 	mage_armor.stat = "ac"
 	mage_armor.value = 3
 	mage_armor.source = "Mage Armor"
+	
+	if target.has_modifier(mage_armor):
+		GameLog.add_entry("Target  already has mage armor!\n")
+		return
 	target.add_modifier(mage_armor)

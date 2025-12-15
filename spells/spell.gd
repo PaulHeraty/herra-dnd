@@ -12,5 +12,5 @@ var bonus_action: bool = false
 var components: String
 var spell_sound: AudioStream
 
-func cast(_caster: CombatEntity, _target: CombatEntity):
+func cast(_caster: CombatEntity, _target: CombatEntity) -> void:
 	push_error("Spell missing cast() implementation")

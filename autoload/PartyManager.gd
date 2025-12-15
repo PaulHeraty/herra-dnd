@@ -30,15 +30,6 @@ func add_player_instance(toon: Resource) -> void:
 	party.append(player)
 	pass
 
-func setup_party() -> void:
-	for p:PlayerCharacter in get_tree().get_root().get_node("/root/Main/Party").get_children():
-		var sts = p.stats
-		var c_type = p.core_data.class_type
-		var pb = p.proficiency_bonus
-		p.saving_throws.set_saving_throws(c_type, sts, pb)
-		p.skills.set_skills(p)
-	pass
-
 func _on_player_selected(player:PlayerCharacter) -> void:
 	player_selected.emit(player)
 	pass
