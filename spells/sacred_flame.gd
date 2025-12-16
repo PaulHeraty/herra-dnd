@@ -25,6 +25,7 @@ func cast(caster: CombatEntity, target: CombatEntity):
 	var dex_check: bool = Rules.saving_throw_check(target.saving_throws.dexterity_modifier, dc)
 	if dex_check:
 		GameLog.add_entry(target.entity_name + " passed it's dexterity saving throw and avoids damage\n")
+		target.take_damage(DamageComponent.DAMAGE_TYPE.RADIANT, 0)
 		return
 	else:
 		GameLog.add_entry(target.entity_name + " failed it's dexterity check\n")

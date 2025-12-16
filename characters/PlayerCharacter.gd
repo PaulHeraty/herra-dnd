@@ -63,11 +63,12 @@ func roll_initiative() -> void:
 	#GameLog.add_entry(core_data.name + " rolls " + str(initiative) + " initiative\n")
 
 func take_damage(dmg_type: DamageComponent.DAMAGE_TYPE, dmg_amount: int) -> void:
-	animation_player.play("hit")
-	play_audio(damaged_audio)
-	GameLog.add_entry(entity_name + " taking " + str(dmg_amount) + " damage of type " + str(dmg_type) + "\n")
-	current_hp -= dmg_amount
-	GameLog.add_entry(entity_name + " has " + str(current_hp) + " hps left\n")
+	if dmg_amount > 0:
+		animation_player.play("hit")
+		play_audio(damaged_audio)
+		GameLog.add_entry(entity_name + " taking " + str(dmg_amount) + " damage of type " + str(dmg_type) + "\n")
+		current_hp -= dmg_amount
+		GameLog.add_entry(entity_name + " has " + str(current_hp) + " hps left\n")
 	if current_hp <= 0:
 		await player_dead()
 	CombatManager.current_combat_state = CombatManager.CombatState.TARGET_DAMAGED

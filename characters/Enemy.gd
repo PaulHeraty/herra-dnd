@@ -70,11 +70,12 @@ func set_hp() -> void:
 	pass
 
 func take_damage(dmg_type: DamageComponent.DAMAGE_TYPE, dmg_amount: int) -> void:
-	animation_player.play("hit")
-	play_audio(damaged_audio)
-	GameLog.add_entry(entity_name + " taking " + str(dmg_amount) + " damage of type " + str(dmg_type) + "\n")
-	current_hp -= dmg_amount
-	GameLog.add_entry(entity_name + " has " + str(current_hp) + " hp left\n")
+	if dmg_amount > 0:
+		animation_player.play("hit")
+		play_audio(damaged_audio)
+		GameLog.add_entry(entity_name + " taking " + str(dmg_amount) + " damage of type " + str(dmg_type) + "\n")
+		current_hp -= dmg_amount
+		GameLog.add_entry(entity_name + " has " + str(current_hp) + " hp left\n")
 	if current_hp <= 0:
 		await enemy_dead()
 	CombatManager.current_combat_state = CombatManager.CombatState.TARGET_DAMAGED

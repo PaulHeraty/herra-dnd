@@ -85,11 +85,7 @@ func turn_loop() -> void:
 func handle_player_turn(actor: CombatEntity):
 	current_combat_state = CombatState.SELECTING_ACTION
 	GameLog.add_entry("Awaiting target selection or spell choice...\n")
-	#await player_action_chosen
-	while current_combat_state == CombatState.SELECTING_ACTION:
-		#GameLog.add_entry("ENEMY WAITING ON ACTION SELECTIONL\n")
-		await get_tree().create_timer(0.1).timeout
-		pass
+	await wait_for_state_other_than(CombatState.SELECTING_ACTION)
 		
 	if current_combat_state == CombatState.SPELL_ACTION_SELECTED:
 		handle_spell_attack(actor)
@@ -99,36 +95,21 @@ func handle_player_turn(actor: CombatEntity):
 		GameLog.add_entry("No action selected.\n")
 	# Add other actions here
 	
-	while current_combat_state != CombatState.TURN_FINISHED:
-		#GameLog.add_entry("WAITING ON ATTACK FINISHED2\n")
-		await get_tree().create_timer(0.1).timeout
-		pass
-	#GameLog.add_entry("PLAYER TURN FINISHED\n")
+	await wait_for_state(CombatState.TURN_FINISHED)
 	pass
 
 func handle_melee_attack(actor: CombatEntity):
 	GameLog.add_entry(actor.entity_name + " is attacking " + target.entity_name + "\n")
 	make_attack(actor)
-	while current_combat_state != CombatState.TURN_FINISHED:
-		#GameLog.add_entry("WAITING ON ATTACK FINISHED\n")
-		await get_tree().create_timer(0.1).timeout
-		pass
+	await wait_for_state(CombatState.TURN_FINISHED)
 	pass
 	
 func handle_spell_attack(actor: CombatEntity):
 	GameLog.add_entry("Selected spell: " + chosen_spell.name + "\n")
 	get_spell_target(chosen_spell)
-	while current_combat_state != CombatState.CASTING_SPELL:
-		#GameLog.add_entry("ENEMY WAITING ON CASTING SPELL\n")
-		await get_tree().create_timer(0.1).timeout
-		pass
+	await wait_for_state(CombatState.CASTING_SPELL)
 	actor.cast_spell(chosen_spell, target)
-	
-	while current_combat_state != CombatState.SPELL_FINISHED:
-		#GameLog.add_entry("WAITING ON TARGET DAMAGE TAKEN\n")
-		await get_tree().create_timer(0.1).timeout
-		pass
-	
+	await wait_for_state(CombatState.SPELL_FINISHED)
 	current_combat_state = CombatState.TURN_FINISHED
 	pass
 
@@ -136,17 +117,10 @@ func perform_ai_action(actor: CombatEntity):
 	# Right now it just performs a melee attack on a random player
 	current_combat_state = CombatState.SELECTING_TARGET
 	get_random_player_target()
-	while current_combat_state != CombatState.ROLLING_ATTACK:
-		#GameLog.add_entry("ENEMY WAITING ON SELECTING TARGET\n")
-		await get_tree().create_timer(0.1).timeout
-		pass
+	await wait_for_state(CombatState.ROLLING_ATTACK)
 	await GameLog.advance # wait for keypress
 	handle_melee_attack(actor)
-	while current_combat_state != CombatState.TURN_FINISHED:
-		#GameLog.add_entry("WAITING ON ATTACK FINISHED2\n")
-		await get_tree().create_timer(0.1).timeout
-		pass
-	#GameLog.add_entry("ENEMY TURN FINISHED\n")
+	await wait_for_state(CombatState.TURN_FINISHED)
 	pass
 	
 func make_attack(attacker: CombatEntity) -> void:
@@ -168,12 +142,7 @@ func make_attack(attacker: CombatEntity) -> void:
 			pb = attacker.proficiency_bonus
 		var dmg: Dictionary =  Rules.attack_roll(attacker, ac, 
 			attacker.equipped_weapons[i], pb)
-		while current_combat_state != CombatState.ATTACK_ROLLED:
-			#GameLog.add_entry("WAITING ON ATTACK ROLL FINISHED\n")
-			await get_tree().create_timer(0.1).timeout
-			pass
-		current_combat_state = CombatState.ATTACK_ROLLED
-		#GameLog.add_entry("ATTACK ROLL FINISHED\n")
+		await wait_for_state(CombatState.ATTACK_ROLLED)
 	
 		# death checks
 		for key in dmg.keys():
@@ -181,12 +150,8 @@ func make_attack(attacker: CombatEntity) -> void:
 			var dmg_amount: int = dmg[key]
 			# Need await here to ensure that enemy is correctly killed as needed
 			target.take_damage(dmg_type, dmg_amount)
-			while current_combat_state != CombatState.TARGET_DAMAGED:
-				#GameLog.add_entry("WAITING ON TARGET DAMAGE TAKEN\n")
-				await get_tree().create_timer(0.1).timeout
-				pass
+			await wait_for_state(CombatState.TARGET_DAMAGED)
 				
-	#GameLog.add_entry("TARGET DAMAGE TAKEN\n")	
 	current_combat_state = CombatState.TURN_FINISHED
 	pass
 	
@@ -260,7 +225,19 @@ func determine_initiative_order() -> void:
 	turn_order.sort_custom(_sort_by_initiative)
 	_print_turn_order()
 	pass
-	
+
+func wait_for_state(s: CombatState) -> void:
+	while current_combat_state != s:
+		await get_tree().create_timer(0.1).timeout
+		pass
+	pass
+
+func wait_for_state_other_than(s: CombatState) -> void:
+	while current_combat_state == s:
+		await get_tree().create_timer(0.1).timeout
+		pass
+	pass	
+
 func _sort_by_initiative(a: CombatEntity, b: CombatEntity) -> bool:
 	return a.initiative > b.initiative  # sort descending
 	
@@ -273,13 +250,11 @@ func _print_turn_order():
 
 func _on_spell_selected(spell: Spell) -> void:
 	chosen_spell = spell
-	#player_action_chosen.emit()
 	current_combat_state = CombatState.SPELL_ACTION_SELECTED
 	pass
 	
 func _on_enemy_selected(selected_enemy: CombatEntity) -> void:
 	target = selected_enemy
-	#player_action_chosen.emit()
 	current_combat_state = CombatState.MELEE_ACTION_SELECTED
 	pass
 
