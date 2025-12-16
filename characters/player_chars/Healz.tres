@@ -35,6 +35,6 @@ equipped_weapons = Array[ExtResource("2_cjphi")]([ExtResource("5_sqisq")])
 equipped_armor = Array[ExtResource("1_bbb4o")]([ExtResource("2_4sl2m"), ExtResource("3_8756t")])
 known_spells = Array[ExtResource("3_f05uj")]([ExtResource("7_8756t"), ExtResource("8_sqisq")])
 attack_miss_sound_path = "res://audio/combat/atk-sword-swing.mp3"
-damage_sound_path = "res://audio/combat/sword-on-flesh.mp3"
+damaged_sound_path = "res://audio/combat/sword-on-flesh.mp3"
 death_sound_path = "res://audio/combat/grunt.mp3"
 metadata/_custom_type_script = "uid://c4sk7eniu4rge"

@@ -31,6 +31,6 @@ expertise = Array[int]([16])
 equipped_weapons = Array[ExtResource("2_d617a")]([ExtResource("4_b3v4q"), ExtResource("4_b3v4q")])
 equipped_armor = Array[ExtResource("1_dc74p")]([ExtResource("2_jpljc")])
 attack_miss_sound_path = "res://audio/combat/atk-sword-swing.mp3"
-damage_sound_path = "res://audio/combat/sword-on-flesh.mp3"
+damaged_sound_path = "res://audio/combat/sword-on-flesh.mp3"
 death_sound_path = "res://audio/combat/grunt.mp3"
 metadata/_custom_type_script = "uid://c4sk7eniu4rge"

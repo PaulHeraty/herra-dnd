@@ -29,9 +29,7 @@ func _ready() -> void:
 		portrait.custom_minimum_size = Vector2(128, 128)
 		portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		portrait.expand = true
-	attack_hit_audio = load(core_data.attack_hit_sound_path)
-	attack_miss_audio = load(core_data.attack_miss_sound_path)
-	damage_audio = load(core_data.damage_sound_path)
+	damaged_audio = load(core_data.damaged_sound_path)
 	death_audio = load(core_data.death_sound_path)
 	pass
 
@@ -39,6 +37,12 @@ func _process(_delta: float) -> void:
 	health_bar.value = current_hp
 	pass
 
+func play_audio(stream: AudioStream) -> void:
+	audio_stream_player.stream = stream
+	audio_stream_player.pitch_scale = randf_range(0.95, 1.05)
+	audio_stream_player.play()
+	pass
+	
 func copy_core_stats() -> void:
 	stats = core_data.stats
 	proficiency_bonus = core_data.proficiency_bonus
@@ -67,14 +71,13 @@ func set_hp() -> void:
 
 func take_damage(dmg_type: DamageComponent.DAMAGE_TYPE, dmg_amount: int) -> void:
 	animation_player.play("hit")
-	audio_stream_player.pitch_scale = randf_range(0.95, 1.05)
-	audio_stream_player.stream = damage_audio
-	audio_stream_player.play()
+	play_audio(damaged_audio)
 	GameLog.add_entry(entity_name + " taking " + str(dmg_amount) + " damage of type " + str(dmg_type) + "\n")
 	current_hp -= dmg_amount
 	GameLog.add_entry(entity_name + " has " + str(current_hp) + " hp left\n")
 	if current_hp <= 0:
 		await enemy_dead()
+	CombatManager.current_combat_state = CombatManager.CombatState.TARGET_DAMAGED
 	pass
 
 func heal(heal_amount: int) -> void:
@@ -86,26 +89,13 @@ func heal(heal_amount: int) -> void:
 func enemy_dead() -> void:
 	GameLog.add_entry(entity_name + " is DEAD!!!!\n")
 	is_alive = false
-	audio_stream_player.stream = death_audio
-	audio_stream_player.play()
+	play_audio(death_audio)
 	await animation_player.animation_finished
 	portrait.modulate = Color("ff0000", 0.5)
 	var i: int = EnemyManager.enemy_list.find(self)
 	EnemyManager.enemy_list.remove_at(i)
 	PartyManager.award_xp(core_data.xp)
-	queue_free()
-	pass
-
-func attack_hit() -> void:
-	audio_stream_player.stream = attack_hit_audio
-	audio_stream_player.pitch_scale = randf_range(0.95, 1.05)
-	audio_stream_player.play()
-	pass
-	
-func attack_miss() -> void:
-	audio_stream_player.stream = attack_miss_audio
-	audio_stream_player.pitch_scale = randf_range(0.95, 1.05)
-	audio_stream_player.play()
+	await queue_free()
 	pass
 
 func calculate_hp(hit_dice: HitDice) -> int:

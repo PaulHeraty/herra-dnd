@@ -25,3 +25,4 @@ func cast(_caster: CombatEntity, target: CombatEntity):
 	for i in 3:
 		amount += d.d4()
 	target.take_damage(DamageComponent.DAMAGE_TYPE.FORCE, amount)
+	pass

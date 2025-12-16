@@ -23,9 +23,7 @@ class_name CharacterData extends Resource
 @export var known_spells: Array[Spell]
 
 @export_category("Audio")
-@export var attack_hit_sound_path: String = ""
-@export var attack_miss_sound_path: String = ""
-@export var damage_sound_path: String = ""
+@export var damaged_sound_path: String = ""
 @export var death_sound_path: String = ""
 
 var level: int = 1

@@ -29,6 +29,6 @@ proficiencies = Array[int]([3, 11])
 equipped_weapons = Array[ExtResource("2_3105f")]([ExtResource("4_qksq2")])
 equipped_armor = Array[ExtResource("1_b2m2b")]([ExtResource("2_xwboy")])
 attack_miss_sound_path = "res://audio/combat/atk-sword-swing.mp3"
-damage_sound_path = "res://audio/combat/sword-on-flesh.mp3"
+damaged_sound_path = "res://audio/combat/sword-on-flesh.mp3"
 death_sound_path = "res://audio/combat/grunt.mp3"
 metadata/_custom_type_script = "uid://c4sk7eniu4rge"

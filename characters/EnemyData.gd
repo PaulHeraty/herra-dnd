@@ -29,7 +29,5 @@ class_name EnemyData extends Resource
 @export var languages: Array[String]
 
 @export_category("Audio Paths")
-@export var attack_hit_sound_path: String = ""
-@export var attack_miss_sound_path: String = ""
-@export var damage_sound_path: String = ""
+@export var damaged_sound_path: String = ""
 @export var death_sound_path: String = ""

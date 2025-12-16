@@ -31,3 +31,4 @@ func cast(_caster: CombatEntity, target: CombatEntity) -> void:
 		GameLog.add_entry("Target  already has mage armor!\n")
 		return
 	target.add_modifier(mage_armor)
+	pass

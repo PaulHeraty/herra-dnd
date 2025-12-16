@@ -16,4 +16,5 @@ cost = 10
 damage = Array[ExtResource("1_ed5ds")]([SubResource("Resource_ed5ds")])
 weight = 2
 properties = Array[String](["Finesse", "Light"])
+attack_sound_path = "res://audio/combat/atk-sword-swing.mp3"
 metadata/_custom_type_script = "uid://dwl0xsytv4d4v"

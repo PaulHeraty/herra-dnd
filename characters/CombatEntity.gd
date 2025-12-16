@@ -6,9 +6,8 @@ var entity_name: String
 var initiative: int = 0
 var entity_type: ENTITY_TYPE = ENTITY_TYPE.PLAYER
 
-var attack_hit_audio: AudioStream
 var attack_miss_audio: AudioStream
-var damage_audio: AudioStream
+var damaged_audio: AudioStream
 var death_audio: AudioStream
 
 var saving_throws: SavingThrows = SavingThrows.new()
@@ -37,6 +36,7 @@ func attack_miss() -> void: pass
 func get_ac() -> int: return 0
 func learn_spell(_spell: Spell) -> void: pass
 func cast_spell(_spell: Spell, _target: CombatEntity) -> void: pass
+func play_audio(_stream: AudioStream) -> void: pass
 
 func add_modifier(mod: StatModifier) -> void:
 	modifiers.append(mod)
@@ -47,7 +47,6 @@ func has_modifier(mod: StatModifier) -> bool:
 			return true
 	return false
 		 
-
 func remove_modifiers_from_source(source: String) -> void:
 	modifiers = modifiers.filter(func(m): return m.source != source)
 	pass

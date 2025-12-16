@@ -31,3 +31,4 @@ func cast(caster: CombatEntity, target: CombatEntity):
 	var d = Dice.new()
 	var amount: int = d.d8()
 	target.take_damage(DamageComponent.DAMAGE_TYPE.RADIANT, amount)
+	pass

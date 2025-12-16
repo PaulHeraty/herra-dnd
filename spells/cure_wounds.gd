@@ -25,3 +25,4 @@ func cast(caster: CombatEntity, target: CombatEntity):
 	var cs = caster.core_data.stats
 	var amount = d.d8() + cs.get_ability_modifier(cs.wisdom)
 	target.heal(amount)
+	pass

@@ -17,4 +17,5 @@ cost = 50
 damage = Array[ExtResource("1_m4fvv")]([SubResource("Resource_m4fvv")])
 weight = 2
 properties = Array[String](["Ammunition (range 150/600)", "Heavy", "Two-handed"])
+attack_sound_path = "res://audio/combat/archer-shot.mp3"
 metadata/_custom_type_script = "uid://dwl0xsytv4d4v"

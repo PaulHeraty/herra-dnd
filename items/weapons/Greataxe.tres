@@ -17,4 +17,5 @@ cost = 30
 damage = Array[ExtResource("1_fjr4r")]([SubResource("Resource_fjr4r")])
 weight = 7
 properties = Array[String](["Heavy", "Two-handed"])
+attack_sound_path = "res://audio/combat/atk-sword-swing.mp3"
 metadata/_custom_type_script = "uid://dwl0xsytv4d4v"

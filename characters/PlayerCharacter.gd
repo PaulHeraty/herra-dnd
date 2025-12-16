@@ -28,15 +28,10 @@ func _ready() -> void:
 		portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 		portrait.expand = true
 	ac = get_ac()
-	if equipped_weapons.size() > 0:
-		if equipped_weapons[0].weapon_type == Weapon.WEAPON_TYPE.MARTIAL_RANGED:
-			attack_hit_audio = load("res://audio/combat/archer-shot.mp3")
-			attack_miss_audio = load("res://audio/combat/archer-shot.mp3")
-		else:
-			attack_hit_audio = load("res://audio/combat/sword-on-flesh.mp3")
-			attack_miss_audio = load("res://audio/combat/atk-sword-swing.mp3")
-	damage_audio = load(core_data.damage_sound_path)
+	damaged_audio = load(core_data.damaged_sound_path)
 	death_audio = load(core_data.death_sound_path)
+	for w in equipped_weapons:
+		w._init()
 	pass
 	
 func _on_button_pressed() -> void:
@@ -56,14 +51,8 @@ func _process(_delta: float) -> void:
 	health_bar.value = current_hp
 	pass
 
-func attack_hit() -> void:
-	audio_stream_player.stream = attack_hit_audio
-	audio_stream_player.pitch_scale = randf_range(0.95, 1.05)
-	audio_stream_player.play()
-	pass
-	
-func attack_miss() -> void:
-	audio_stream_player.stream = attack_miss_audio
+func play_audio(stream: AudioStream) -> void:
+	audio_stream_player.stream = stream
 	audio_stream_player.pitch_scale = randf_range(0.95, 1.05)
 	audio_stream_player.play()
 	pass
@@ -75,11 +64,13 @@ func roll_initiative() -> void:
 
 func take_damage(dmg_type: DamageComponent.DAMAGE_TYPE, dmg_amount: int) -> void:
 	animation_player.play("hit")
+	play_audio(damaged_audio)
 	GameLog.add_entry(entity_name + " taking " + str(dmg_amount) + " damage of type " + str(dmg_type) + "\n")
 	current_hp -= dmg_amount
 	GameLog.add_entry(entity_name + " has " + str(current_hp) + " hps left\n")
 	if current_hp <= 0:
-		player_dead()
+		await player_dead()
+	CombatManager.current_combat_state = CombatManager.CombatState.TARGET_DAMAGED
 	pass
 
 func heal(heal_amount: int) -> void:
@@ -95,8 +86,7 @@ func heal(heal_amount: int) -> void:
 func player_dead() -> void:
 	GameLog.add_entry(entity_name + " is UNCONSCIOUS!!!!\n")
 	is_alive = false
-	audio_stream_player.stream = death_audio
-	audio_stream_player.play()
+	play_audio(death_audio)
 	await animation_player.animation_finished
 	portrait.modulate = Color("ff0000", 0.5)
 	pass
@@ -145,10 +135,15 @@ func learn_spell(spell: Spell) -> void:
 	pass
 	
 func cast_spell(spell: Spell, target: CombatEntity) -> void:
-	audio_stream_player.stream = spell.spell_sound
-	audio_stream_player.play()
+	play_audio(spell.spell_sound)
 	await audio_stream_player.finished
-	await spell.cast(self, target)
+	spell.cast(self, target)
+	if spell.spell_type == Spell.SPELLTYPE.OFFENSIVE:
+		while CombatManager.current_combat_state != CombatManager.CombatState.TARGET_DAMAGED:
+			#GameLog.add_entry("WAITING ON ATTACK FINISHED\n")
+			await get_tree().create_timer(0.1).timeout
+			pass
+	CombatManager.current_combat_state = CombatManager.CombatState.SPELL_FINISHED
 	pass
 
 func award_xp(xp: int) -> void:
