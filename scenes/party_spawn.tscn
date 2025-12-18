@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cokk77dpouplb"]
+
+[ext_resource type="Script" uid="uid://b6gifori153pv" path="res://scenes/party_spawn.gd" id="1_7fv1t"]
+[ext_resource type="Texture2D" uid="uid://bd5ih3p0rwudb" path="res://sprites/human_fighter.png" id="2_dsjbj"]
+
+[node name="PartySpawn" type="Node2D"]
+script = ExtResource("1_7fv1t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.28707156, 1, 0.27395758, 0.674)
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("2_dsjbj")

@@ -37,6 +37,8 @@ func hide_spell_book() -> void:
 	pass
 	
 func refresh_tabs(actor: CombatEntity) -> void:
+	if actor == null:
+		return
 	var known_spells: Array[Spell] = actor.known_spells
 	for i in tabs.get_tab_count():
 		var sheet: SpellSheet = tabs.get_child(i)

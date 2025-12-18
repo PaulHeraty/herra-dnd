@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://vel3nkmk8lnp"]
+
+[ext_resource type="Script" uid="uid://bg8jmthda60k1" path="res://party/party_hi_res.gd" id="1_wxbim"]
+[ext_resource type="Texture2D" uid="uid://bd5ih3p0rwudb" path="res://sprites/human_fighter.png" id="1_xwin1"]
+
+[node name="PartyHiRes" type="Node2D"]
+script = ExtResource("1_wxbim")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("1_xwin1")

@@ -12,8 +12,8 @@ var is_shown: bool = false
 func _ready() -> void:
 	hide_party_sheet()
 	# Set tab names to player character names
-	for i in tab_container.get_tab_count():
-		tab_container.get_child(i).name = PartyManager.party[i].core_data.name
+	#for i in tab_container.get_tab_count():
+		#tab_container.get_child(i).name = PartyManager.party[i].core_data.name
 	pass
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -25,6 +25,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 func show_party_sheet() -> void:
+	for i in tab_container.get_tab_count():
+		tab_container.get_child(i).name = PartyManager.party[i].core_data.name
 	visible = true
 	refresh_tabs()
 	tab_container.current_tab = 0

@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://drbyklvx8cka"]
 
-[ext_resource type="Script" uid="uid://c8euvx5q5m020" path="res://scenes/main.gd" id="1_elqb8"]
-[ext_resource type="PackedScene" uid="uid://be3g0j2cydk7t" path="res://scenes/UI/SpellSheet/SpellBook.tscn" id="2_rvslj"]
+[ext_resource type="Script" uid="uid://c8euvx5q5m020" path="res://scenes/combat_scene.gd" id="1_4j82b"]
+[ext_resource type="PackedScene" uid="uid://be3g0j2cydk7t" path="res://scenes/UI/SpellSheet/SpellBook.tscn" id="2_rx5ct"]
 
-[node name="Main" type="Node2D"]
-script = ExtResource("1_elqb8")
+[node name="CombatScene" type="Node2D"]
+script = ExtResource("1_4j82b")
 
 [node name="Party" type="Node" parent="."]
 
@@ -57,4 +57,4 @@ mouse_filter = 2
 bbcode_enabled = true
 scroll_following = true
 
-[node name="SpellBook" parent="." instance=ExtResource("2_rvslj")]
+[node name="SpellBook" parent="." instance=ExtResource("2_rx5ct")]

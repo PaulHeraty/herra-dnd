@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dsdl5yyfvvqfe"]
+
+[ext_resource type="Script" uid="uid://o6m8aghkr5oj" path="res://party/party.gd" id="1_5irmr"]
+[ext_resource type="Texture2D" uid="uid://bd5ih3p0rwudb" path="res://sprites/human_fighter.png" id="1_mpqy2"]
+[ext_resource type="Script" uid="uid://bcw5hwlmtoj8o" path="res://party/party_camera.gd" id="3_hmjyr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mpqy2"]
+radius = 7.0
+
+[node name="Party" type="CharacterBody2D"]
+collision_mask = 16
+script = ExtResource("1_5irmr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(0.06, 0.06)
+texture = ExtResource("1_mpqy2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_mpqy2")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+editor_draw_limits = true
+script = ExtResource("3_hmjyr")

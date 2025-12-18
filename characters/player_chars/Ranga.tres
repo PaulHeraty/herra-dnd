@@ -28,7 +28,6 @@ stats = SubResource("Resource_gw5ih")
 proficiencies = Array[int]([5, 11])
 equipped_weapons = Array[ExtResource("2_shp2t")]([ExtResource("4_m2j1p")])
 equipped_armor = Array[ExtResource("1_4cxx5")]([ExtResource("2_wx2gg")])
-attack_miss_sound_path = "res://audio/combat/archer-shot.mp3"
 damaged_sound_path = "res://audio/combat/sword-on-flesh.mp3"
 death_sound_path = "res://audio/combat/grunt.mp3"
 metadata/_custom_type_script = "uid://c4sk7eniu4rge"
