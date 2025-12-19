@@ -10,6 +10,7 @@ bg_color = Color(0.23392546, 0.23392549, 0.23392531, 1)
 bg_color = Color(0.43519226, 0.4351923, 0.43519217, 1)
 
 [node name="SpellBook" type="CanvasLayer"]
+layer = 11
 script = ExtResource("1_3lvro")
 
 [node name="Control" type="Control" parent="."]

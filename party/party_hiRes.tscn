@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bd5ih3p0rwudb" path="res://sprites/human_fighter.png" id="1_xwin1"]
 
 [node name="PartyHiRes" type="Node2D"]
+rotation = -1.446878
 script = ExtResource("1_wxbim")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

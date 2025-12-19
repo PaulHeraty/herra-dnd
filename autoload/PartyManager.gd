@@ -29,10 +29,10 @@ func add_map_team_hires_instance() -> void:
 	pass
 	
 func spawn_player(parent_node) -> Party:
-	var map_team = PARTY.instantiate()
-	parent_node.add_child(map_team)
+	var mt = PARTY.instantiate()
+	parent_node.add_child(mt)
 	map_team_spawned = true
-	return map_team 
+	return mt 
 	
 func add_players_for_combat() -> void:
 	party.clear()

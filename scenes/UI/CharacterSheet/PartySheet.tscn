@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://beypv5k06nalq" path="res://scenes/UI/CharacterSheet/CharacterSheet.tscn" id="2_0sl4c"]
 
 [node name="PartySheet" type="CanvasLayer"]
+layer = 10
 script = ExtResource("1_yhv5m")
 
 [node name="Control" type="Control" parent="."]

@@ -12,6 +12,7 @@ var direction : Vector2 = Vector2.ZERO
 
 func _ready() -> void:
 	PartyManager.map_team = self
+	sprite.visible = false
 	pass
 	
 func _process(_delta: float) -> void:
@@ -19,23 +20,13 @@ func _process(_delta: float) -> void:
 		Input.get_axis("left", "right"),
 		Input.get_axis("up", "down")
 	).normalized()
+	
+	var direction_id: int = int( round((direction + cardinal_direction * 0.1).angle() / TAU * DIR_4.size()))
+	var new_direction: Vector2 = DIR_4[direction_id]
+	cardinal_direction = new_direction
+	
 	velocity = direction * move_speed
 
 	
 func _physics_process(_delta: float) -> void:
 	move_and_slide()
-	
-func SetDirection() -> bool:
-	if direction == Vector2.ZERO:
-		return false
-	
-	var direction_id: int = int( round((direction + cardinal_direction * 0.1).angle() / TAU * DIR_4.size()))
-	var new_direction: Vector2 = DIR_4[direction_id]
-	
-	if new_direction == cardinal_direction:
-		return false
-	
-	cardinal_direction = new_direction
-	DirectionChanged.emit(new_direction)
-	sprite.scale.x = -1 if cardinal_direction == Vector2.LEFT else 1
-	return true

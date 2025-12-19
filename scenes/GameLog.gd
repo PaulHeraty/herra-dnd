@@ -16,7 +16,7 @@ func add_entry(entry_text: String):
 		rich_text_label_ref.append_text(entry_text)
 		rich_text_label_ref.scroll_to_line(9999)
 	else:
-		print("GameLog.gd ERROR: rich_text_label_ref is NULL. UI not connected!")
+		print("GameLog.gd ERROR: rich_text_label_ref is NULL. GameLog UI not connected!")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("Advance"):
