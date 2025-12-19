@@ -1,4 +1,4 @@
-class_name Main extends Node
+class_name CombatScene extends Node
 
 @onready var panel: Panel = $GameLog/Control/Panel
 @onready var game_log: RichTextLabel = $GameLog/Control/Panel/ScrollContainer/GameLog

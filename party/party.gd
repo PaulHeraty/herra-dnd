@@ -1,7 +1,5 @@
 class_name Party extends CharacterBody2D
 
-signal DirectionChanged(new_direction: Vector2)
-
 @onready var sprite: Sprite2D = $Sprite2D
 
 var move_speed: float = 50.0

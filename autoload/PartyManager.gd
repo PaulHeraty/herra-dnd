@@ -22,6 +22,7 @@ func _ready() -> void:
 	add_players_for_combat()
 	await  get_tree().create_timer(0.2).timeout
 	#map_team_spawned = true
+	map_team_hires.visible = false
 
 func add_map_team_hires_instance() -> void:
 	map_team_hires = PARTY_HIRES.instantiate()
@@ -45,9 +46,9 @@ func add_players_for_combat() -> void:
 func add_player_combat_instance(toon: Resource) -> void:
 	var player = PLAYER_CHARACTER.instantiate()
 	player.core_data = toon
-	#get_tree().get_root().get_node("/root/Main/Party").add_child(player)
 	add_child(player)
 	player.selected.connect(_on_player_selected)
+	player.visible = false
 	party.append(player)
 	pass
 

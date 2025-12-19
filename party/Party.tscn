@@ -18,7 +18,8 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="Party" type="CharacterBody2D"]
-collision_mask = 16
+z_index = 1
+collision_mask = 24
 script = ExtResource("1_5irmr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -7,6 +7,8 @@ signal selected(enemy)
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var button: Button = $Portrait/Button
+@onready var high_res_sprite: Sprite2D = $HighResSprite
+@onready var sprite_scale: float = 0.3
 
 var is_alive: bool = true
 
@@ -18,6 +20,10 @@ func _ready() -> void:
 	copy_core_stats()
 	button.pressed.connect(_on_button_pressed)
 	set_hp()
+	var tex: Texture2D = load(core_data.picture_path)
+	high_res_sprite.texture = tex
+	high_res_sprite.scale = Vector2(sprite_scale, sprite_scale)
+	
 	entity_name = core_data.name
 	entity_type = ENTITY_TYPE.ENEMY
 	health_bar.max_value = max_hp

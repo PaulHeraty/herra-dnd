@@ -28,7 +28,8 @@ metadata/_custom_type_script = "uid://ccxeegh34n548"
 [resource]
 script = ExtResource("4_0jtq2")
 name = "Skeleton"
-portrait_path = "res://sprites/enemies/skeleton.jpg"
+portrait_path = "res://sprites/enemies/skeleton_portrait.jpg"
+picture_path = "res://sprites/enemies/skeleton.png"
 stats = SubResource("Resource_ne88d")
 hit_dice = SubResource("Resource_dlwes")
 xp = 50

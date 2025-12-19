@@ -2,6 +2,7 @@ class_name EnemyData extends Resource
 
 @export var name: String = ""
 @export var portrait_path: String = ""
+@export var picture_path: String = ""
 
 @export var stats: Stats
 

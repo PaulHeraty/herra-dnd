@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://b6p7vc00ph3t8"]
+
+[ext_resource type="Script" uid="uid://dlc3coyw3h6qw" path="res://scenes/encounter.gd" id="1_xp8is"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xp8is"]
+radius = 50.0
+
+[sub_resource type="Gradient" id="Gradient_2siry"]
+offsets = PackedFloat32Array(0.20627803, 0.58295965, 0.84304935)
+colors = PackedColorArray(1, 1, 1, 1, 0.050708726, 0.050708726, 0.050708726, 0.49100003, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_qgecd"]
+gradient = SubResource("Gradient_2siry")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Encounter" type="Node2D"]
+script = ExtResource("1_xp8is")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_xp8is")
+debug_color = Color(1, 0.012920001, 0.012920001, 0.23200001)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_qgecd")

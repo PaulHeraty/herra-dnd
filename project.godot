@@ -85,6 +85,8 @@ right={
 [layer_names]
 
 2d_physics/layer_1="Player"
+2d_physics/layer_3="EncounterTriggers"
+2d_physics/layer_4="MapTriggers"
 2d_physics/layer_5="Walls"
 
 [rendering]
