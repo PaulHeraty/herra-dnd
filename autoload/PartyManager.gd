@@ -71,5 +71,5 @@ func set_as_parent(_p : Node2D) -> void:
 		map_team.get_parent().remove_child(map_team)
 	_p.add_child(map_team)
 	
-func unparent_player(_p: Node2D) -> void:
+func unparent_player(_p: Node) -> void:
 	_p.remove_child(map_team)
